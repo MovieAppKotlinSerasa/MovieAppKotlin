@@ -2,17 +2,16 @@ package com.example.movieapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.movieapp.ui.main.MainFragment
+import com.example.movieapp.view.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
-        }
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, MainFragment.newInstance())
+            .commitNow()
     }
 }
