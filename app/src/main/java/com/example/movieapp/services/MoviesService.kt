@@ -1,4 +1,4 @@
-package com.example.movieapp.repository
+package com.example.movieapp.services
 
 import com.example.movieapp.model.MoviesData
 import retrofit2.Call

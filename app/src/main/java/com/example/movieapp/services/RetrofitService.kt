@@ -1,8 +1,7 @@
-package com.example.movieapp.repository
+package com.example.movieapp.services
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 
 object RetrofitService {
 
