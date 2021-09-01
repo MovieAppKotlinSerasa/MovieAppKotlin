@@ -6,9 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.example.movieapp.R
+import com.example.movieapp.databinding.LoginFragmentBinding
+import com.example.movieapp.databinding.SignUpFragmentBinding
+import com.example.movieapp.utils.replaceView
+import com.example.movieapp.view_model.LoginViewModel
+import com.example.movieapp.view_model.SignUpViewModel
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseUser
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
+
+    lateinit var binding: SignUpFragmentBinding
 
     companion object {
         fun newInstance() = SignUpFragment()
@@ -16,17 +26,27 @@ class SignUpFragment : Fragment() {
 
     private lateinit var viewModel: SignUpViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.sign_up_fragment, container, false)
+    private val observerNewUser = Observer<FirebaseUser?>{
+        Snackbar.make(requireView(), "Usuário criado com sucesso!", Snackbar.LENGTH_LONG).show()
+        requireActivity().replaceView(LoginFragment.newInstance())
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = SignUpFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(SignUpViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel.user.observe(viewLifecycleOwner, observerNewUser)
+
+        binding.buttonRealizarCadastro.setOnClickListener {
+            val inputEmail = binding.editTextEmailNovoCadastro.text
+            val inputPassword = binding.editTextTextPasswordNovoCadastro.text
+
+            if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()){
+                viewModel.createNewAccount(inputEmail.toString(), inputPassword.toString())
+            }
+
+        }
+
     }
 
 }

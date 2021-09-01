@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.example.movieapp.R
 import com.example.movieapp.view_model.MainViewModel
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(R.layout.main_fragment) {
 
     companion object {
         fun newInstance() = MainFragment()
