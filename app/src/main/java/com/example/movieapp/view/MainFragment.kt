@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.movieapp.R
 import com.example.movieapp.view_model.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment(R.layout.main_fragment) {
 
     companion object {
