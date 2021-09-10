@@ -26,7 +26,7 @@ class MainFragment : Fragment() {
 
     val observerSignOut = Observer<Boolean> {isSignedIn ->
         if (!isSignedIn) {
-            requireActivity().replaceView(LoginFragment.newInstance())
+            requireActivity().finish()
         }
     }
 
