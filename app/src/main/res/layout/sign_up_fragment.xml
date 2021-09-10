@@ -9,80 +9,110 @@
 
     <EditText
         android:id="@+id/editTextEmailNovoCadastro"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginEditTextDefault"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/marginEditTextDefault"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPasswordNovoCadastro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.345" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
     <EditText
-        android:id="@+id/editTextTextPasswordNovoCadastro"
+        android:id="@+id/editTextSenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginLeft="@dimen/marginEditTextDefault"
+        android:layout_marginRight="@dimen/marginEditTextDefault"
+        android:layout_marginBottom="@dimen/margemButtonDefault"
         android:ems="10"
         android:hint="Senha"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRealizarCadastro"
+        app:layout_constraintBottom_toTopOf="@+id/editTextConfirmarSenha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonRealizarCadastro"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="28dp"
         android:text="Cadastrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonCancelar" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginEditTextDefault"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/marginEditTextDefault"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Nome"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
-        android:layout_width="305dp"
-        android:layout_height="48dp"
+        android:id="@+id/editTextConfirmarSenha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginEditTextDefault"
+        android:layout_marginEnd="@dimen/marginEditTextDefault"
+        android:layout_marginBottom="@dimen/margemButtonDefault"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="Confirmar Senha"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="555dp" />
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRealizarCadastro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginEditTextDefault"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/marginEditTextDefault"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Sobrenome"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="85dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="231dp" />
+        android:layout_marginStart="@dimen/marginEditTextDefault"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/marginEditTextDefault"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailNovoCadastro" />
+
+    <Button
+        android:id="@+id/buttonCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRealizarCadastro"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,9 @@ import com.example.movieapp.view_model.LoginViewModel
 import com.example.movieapp.view_model.SignUpViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseUser
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
 
     lateinit var binding: SignUpFragmentBinding
@@ -39,12 +41,19 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
 
         binding.buttonRealizarCadastro.setOnClickListener {
             val inputEmail = binding.editTextEmailNovoCadastro.text
-            val inputPassword = binding.editTextTextPasswordNovoCadastro.text
+            val inputPassword = binding.editTextSenha.text
 
             if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()){
                 viewModel.createNewAccount(inputEmail.toString(), inputPassword.toString())
+            } else {
+                Snackbar.make(view, "Preencha todos os campos",
+                    Snackbar.LENGTH_LONG).show()
             }
 
+        }
+
+        binding.buttonCancelar.setOnClickListener {
+            requireActivity().replaceView(LoginFragment.newInstance())
         }
 
     }

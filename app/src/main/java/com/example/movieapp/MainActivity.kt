@@ -1,8 +1,12 @@
 package com.example.movieapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.example.movieapp.view.MainFragment
+import androidx.appcompat.app.AppCompatActivity
+import com.example.movieapp.utils.replaceView
+import com.example.movieapp.view.LoginFragment
+import com.example.movieapp.view.Main2Activity
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -12,9 +16,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, MainFragment.newInstance())
-            .commitNow()
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            startActivity2()
+            finish()
+        } else {
+            replaceView( LoginFragment.newInstance(), R.id.container)
+        }
         
+    }
+
+    private fun startActivity2(){
+        Intent(this, Main2Activity::class.java).apply {
+            startActivity(this)
+        }
+
     }
 }
