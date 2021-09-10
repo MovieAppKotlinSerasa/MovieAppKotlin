@@ -21,5 +21,4 @@ class MovieViewModel @Inject constructor(private val repository: MoviesRepositor
             }
         }
     }
-
 }
