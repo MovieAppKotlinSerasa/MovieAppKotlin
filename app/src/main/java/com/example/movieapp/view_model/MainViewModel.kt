@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
+
     private val repository: AuthenticationRepository
     ) : ViewModel() {
 
@@ -29,5 +30,4 @@ class MainViewModel @Inject constructor(
             _user.value = this
         }
     }
-
 }

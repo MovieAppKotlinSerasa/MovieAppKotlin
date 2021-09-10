@@ -62,7 +62,7 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
         }
 
         binding.buttonCadastrar.setOnClickListener {
-            requireActivity().replaceView(SignUpFragment.newInstance())
+            requireActivity().replaceView(SignUpFragment.newInstance(), R.id.container)
         }
 
     }

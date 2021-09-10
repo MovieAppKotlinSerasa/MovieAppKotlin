@@ -30,7 +30,7 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
 
     private val observerNewUser = Observer<FirebaseUser?>{
         Snackbar.make(requireView(), "Usuário criado com sucesso!", Snackbar.LENGTH_LONG).show()
-        requireActivity().replaceView(LoginFragment.newInstance())
+        requireActivity().replaceView(LoginFragment.newInstance(), R.id.container)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

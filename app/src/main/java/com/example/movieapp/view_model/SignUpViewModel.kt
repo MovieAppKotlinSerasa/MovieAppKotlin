@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.movieapp.repository.AuthenticationRepository
 import com.google.firebase.auth.FirebaseUser
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val authenticationRepository: AuthenticationRepository
 ) : ViewModel() {

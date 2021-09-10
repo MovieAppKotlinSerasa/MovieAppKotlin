@@ -19,6 +19,7 @@ object HiltModule {
     @Provides
     fun provideGetMovies(): MoviesService = RetrofitService.getAllMovies()
 
+
     @Provides
     fun getRepository(moviesRepository : MoviesService): MoviesRepository = MoviesRepository(moviesRepository)
 

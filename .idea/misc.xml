@@ -3,20 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23958333333333334" />
-        <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.1935185185185185" />
-        <entry key="app/src/main/res/layout/content_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/content_main2.xml" value="0.240625" />
-        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.1935185185185185" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1935185185185185" />
-        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1935185185185185" />
-        <entry key="app/src/main/res/layout/login_activity.xml" value="0.23958333333333334" />
-        <entry key="app/src/main/res/layout/login_fragment.xml" value="0.228125" />
-        <entry key="app/src/main/res/layout/main_activity.xml" value="0.24166666666666667" />
-        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.23958333333333334" />
-        <entry key="app/src/main/res/layout/nav_header_main.xml" value="0.1935185185185185" />
-        <entry key="app/src/main/res/layout/sign_up_fragment.xml" value="0.335" />
-        <entry key="app/src/main/res/menu/activity_main2_drawer.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/app_bar_main2.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/content_main2.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/item_movie.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/login_activity.xml" value="0.12083333333333333" />
+        <entry key="app/src/main/res/layout/login_fragment.xml" value="0.12083333333333333" />
+        <entry key="app/src/main/res/layout/main_activity.xml" value="0.203125" />
+        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.203125" />
+        <entry key="app/src/main/res/layout/movie_fragment.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -1,12 +1,22 @@
 package com.example.movieapp
 
 import android.content.Intent
+
 import android.os.Bundle
+
 import androidx.appcompat.app.AppCompatActivity
+
 import com.example.movieapp.utils.replaceView
+
+
+
 import com.example.movieapp.view.LoginFragment
 import com.example.movieapp.view.Main2Activity
+
 import com.google.firebase.auth.FirebaseAuth
+
+
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             replaceView( LoginFragment.newInstance(), R.id.container)
         }
-        
+
     }
 
     private fun startActivity2(){

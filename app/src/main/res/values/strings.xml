@@ -13,4 +13,8 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_main_drawer">MainDrawerActivity</string>
     <string name="title_activity_main_drawer2">MainDrawerActivity2</string>
+
+    <string name="popular">Popular</string>
+    <string name="most_popular_movies">Most popular movies</string>
+
 </resources>
