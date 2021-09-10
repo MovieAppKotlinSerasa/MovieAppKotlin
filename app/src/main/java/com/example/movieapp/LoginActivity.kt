@@ -2,7 +2,7 @@ package com.example.movieapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.movieapp.view.LoginFragment
+import com.example.movieapp.view.MovieFragment
 
 class LoginActivity : AppCompatActivity() {
 
@@ -11,7 +11,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.login_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, LoginFragment.newInstance())
+                .replace(R.id.container, MovieFragment.newInstance())
                 .commitNow()
         }
     }

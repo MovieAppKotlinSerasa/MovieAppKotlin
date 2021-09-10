@@ -13,7 +13,9 @@ import dagger.hilt.components.SingletonComponent
 object HiltModule {
 
     @Provides
-    fun provideGetMovies(): MoviesService = RetrofitService.getAllMovies()
+    fun provideGetMovies(): MoviesService{
+        return RetrofitService.getAllMovies()
+    }
 
     @Provides
     fun getRepository(moviesRepository : MoviesService): MoviesRepository = MoviesRepository(moviesRepository)
