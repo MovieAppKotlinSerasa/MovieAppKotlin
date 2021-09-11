@@ -1,6 +1,7 @@
 package com.example.movieapp.repository
 
 import com.example.movieapp.model.MoviesData
+import com.example.movieapp.model.Results
 import com.example.movieapp.services.MoviesService
 import com.example.movieapp.services.RetrofitService
 import retrofit2.Call
@@ -33,5 +34,4 @@ class MoviesRepository @Inject constructor(
         })
     }
 //    val moviesRepository = RetrofitService.getAllMovies()
-
 }

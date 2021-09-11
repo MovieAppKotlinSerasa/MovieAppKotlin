@@ -8,12 +8,13 @@
     tools:context=".view.LoginFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/LogoApp"
         android:layout_width="288dp"
         android:layout_height="177dp"
         android:scaleType="centerCrop"
         app:civ_border_color="#ff000000"
         app:civ_border_width="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailUser"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -23,7 +24,7 @@
         tools:src="@tools:sample/avatars" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextTextEmailUser"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
@@ -53,24 +54,24 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_Entrar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="208dp"
         android:text="Entrar"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/button_Cadastrar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_Cadastrar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/button_Entrar"
+        app:layout_constraintTop_toTopOf="@+id/button_Entrar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
