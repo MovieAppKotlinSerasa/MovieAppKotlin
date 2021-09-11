@@ -9,12 +9,12 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class MoviesRepository @Inject constructor(
-    val moviesRepository: MoviesService
+    private val moviesRepository: MoviesService
 ) {
 
 
     fun getAllMoviesFromService(callback: (MoviesData?, String?) -> Unit) {
-        val call = moviesRepository.getMostPopularMovies("", 1)
+        val call = moviesRepository.getMostPopularMovies(page = 1)
 
         call.enqueue(object: Callback<MoviesData>{
 
