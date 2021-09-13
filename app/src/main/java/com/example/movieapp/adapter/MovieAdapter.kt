@@ -10,7 +10,7 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.ItemMovieBinding
 import com.example.movieapp.model.Results
 
-class MovieAdapter(): RecyclerView.Adapter<MovieViewHolder>() {
+class MovieAdapter: RecyclerView.Adapter<MovieViewHolder>() {
 
     private var listOfMovies: MutableList<Results> = mutableListOf()
 
@@ -20,10 +20,11 @@ class MovieAdapter(): RecyclerView.Adapter<MovieViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(listOfMovies[position])
+        val positionToCreateInfiniteLoop = position % listOfMovies.size
+        holder.bind(listOfMovies[positionToCreateInfiniteLoop])
     }
 
-    override fun getItemCount(): Int = listOfMovies.size
+    override fun getItemCount(): Int = listOfMovies.size*3
 
     fun updateMovies(movie: List<Results>) {
         listOfMovies.clear()
