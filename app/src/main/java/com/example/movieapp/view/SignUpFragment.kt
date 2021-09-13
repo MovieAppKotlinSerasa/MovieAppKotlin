@@ -53,7 +53,7 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
         }
 
         binding.buttonCancelar.setOnClickListener {
-            requireActivity().replaceView(LoginFragment.newInstance())
+            requireActivity().replaceView(LoginFragment.newInstance(), R.id.container)
         }
 
     }

@@ -4,11 +4,9 @@ import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import com.example.movieapp.MainActivity
+import com.example.movieapp.HomeActivity
 import com.example.movieapp.R
 import com.example.movieapp.databinding.LoginFragmentBinding
 import com.example.movieapp.utils.replaceView
@@ -20,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.login_fragment) {
 
-    lateinit var binding: LoginFragmentBinding
+    private lateinit var binding: LoginFragmentBinding
 
     companion object {
         fun newInstance() = LoginFragment()
@@ -29,7 +27,7 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
     private lateinit var viewModel: LoginViewModel
 
     private val observerUser = Observer<FirebaseUser>{
-        Intent(requireContext(), Main2Activity::class.java).apply {
+        Intent(requireContext(), HomeActivity::class.java).apply {
             startActivity(this)
         }
     }

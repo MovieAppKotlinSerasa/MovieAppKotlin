@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/drawer_nav_home">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.movieapp.ui.home.HomeFragment"
+        android:id="@+id/drawer_nav_home"
+        android:name="com.example.movieapp.view.MovieFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/movie_fragment" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/drawer_nav_gallery"
         android:name="com.example.movieapp.view.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/drawer_nav_slideshow"
         android:name="com.example.movieapp.view.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />

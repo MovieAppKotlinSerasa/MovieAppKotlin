@@ -20,8 +20,6 @@ class AuthenticationRepository @Inject constructor(
 
             if (authResult.user != null){
                 callback(authResult.user, null)
-            } else {
-                callback(null, "Error diferente")
             }
 
             taks.addOnFailureListener {
