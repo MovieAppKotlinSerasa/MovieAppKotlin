@@ -4,10 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-class User (
+class User(
 
-    val id : Int,
+    val id: Int,
 
-    val name : String
+    val name: String
 
-    )
+)
