@@ -23,5 +23,7 @@
     <string name="bottom_nav_search">Pesquisa</string>
     <string name="bottom_nav_home">Principal</string>
     <string name="bottom_nav_favorites">Favoritos</string>
+    <string name="description">Description</string>
+    <string name="movie_title">Title</string>
 
 </resources>
