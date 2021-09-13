@@ -1,11 +1,9 @@
 package com.example.movieapp.repository
 
-import com.example.movieapp.model.MoviesData
-import com.example.movieapp.model.Results
+import com.example.movieapp.model.Movies
 import com.example.movieapp.services.MoviesService
-import com.example.movieapp.services.RetrofitService
-import retrofit2.Call
-import retrofit2.Callback
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -13,25 +11,22 @@ class MoviesRepository @Inject constructor(
     private val moviesRepository: MoviesService
 ) {
 
+    suspend fun getAllMoviesFromService(page: Int, genres: List<Int>): Movies? {
 
-    fun getAllMoviesFromService(callback: (MoviesData?, String?) -> Unit) {
-        val call = moviesRepository.getMostPopularMovies(page = 1)
+        return withContext(Dispatchers.Default) {
+            val response = moviesRepository.getMostPopularMovies(page = page, genres = genres.joinToString())
+            chargeData(response)
+        }
 
-        call.enqueue(object: Callback<MoviesData>{
-
-            override fun onResponse(call: Call<MoviesData>, response: Response<MoviesData>) {
-                if(response.body() != null) {
-                    callback(response.body(), null)
-                } else {
-                    callback(null, "Error to connect with API response ${response.errorBody()}")
-                }
-            }
-
-            override fun onFailure(call: Call<MoviesData>, t: Throwable) {
-                callback(null, t.message)
-            }
-
-        })
     }
+
+    private fun <T> chargeData(data: Response<T>): T? {
+        return if (data.isSuccessful) {
+            data.body()
+        } else {
+            null
+        }
+    }
+
 //    val moviesRepository = RetrofitService.getAllMovies()
 }
