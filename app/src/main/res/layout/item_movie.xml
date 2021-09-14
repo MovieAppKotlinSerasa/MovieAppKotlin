@@ -6,13 +6,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="130dp"
-        android:layout_height="250dp"
-        android:layout_margin="12dp"
+        android:layout_width="140dp"
+        android:layout_height="235dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="12dp"
+        app:cardElevation="16dp"
         android:checkable="true"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="5dp"
+        android:backgroundTint="@color/dark_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,39 +37,19 @@
 
             <TextView
                 android:id="@+id/movieTitleTextView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:ellipsize="end"
                 android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
                 android:text="@string/movie_title"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/itemMoviePosterImageView"/>
-
-            <TextView
-                android:id="@+id/movieDescriptionTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:maxLines="3"
-                android:text="@string/description"
-                android:textColor="@color/black"
-                android:textSize="8sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movieTitleTextView"
-                tools:ignore="SmallSp" />
-
-            <ImageButton
-                android:id="@+id/favoriteButton"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_baseline_favorite_border_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:tint="@color/white" />
+                app:layout_constraintTop_toBottomOf="@+id/itemMoviePosterImageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

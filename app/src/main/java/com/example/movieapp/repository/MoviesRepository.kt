@@ -5,6 +5,7 @@ import com.example.movieapp.services.MoviesService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
+import retrofit2.http.Query
 import javax.inject.Inject
 
 class MoviesRepository @Inject constructor(
@@ -18,6 +19,14 @@ class MoviesRepository @Inject constructor(
             chargeData(response)
         }
 
+    }
+
+    suspend fun getFilteredMovies(page: Int, query: String): Movies? {
+
+        return withContext(Dispatchers.Default) {
+            val response = moviesRepository.getFilteredMoviesByName(page = page, title = query)
+            chargeData(response)
+        }
     }
 
     private fun <T> chargeData(data: Response<T>): T? {

@@ -10,6 +10,7 @@ import com.example.movieapp.databinding.ActivityHomeBinding
 import com.example.movieapp.repository.AuthenticationRepository
 import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view.MovieFragment
+import com.example.movieapp.view.SearchFragment
 import com.example.movieapp.view.ui.gallery.GalleryFragment
 import com.example.movieapp.view.ui.slideshow.SlideshowFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
             when(it.itemId) {
 
                 R.id.bottom_nav_home -> replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
-                R.id.bottom_nav_search -> replaceView(GalleryFragment(), R.id.nav_host_fragment_home_container)
+                R.id.bottom_nav_search -> replaceView(SearchFragment.newInstance(), R.id.nav_host_fragment_home_container)
                 R.id.bottom_nav_favorites -> replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
 
             }
