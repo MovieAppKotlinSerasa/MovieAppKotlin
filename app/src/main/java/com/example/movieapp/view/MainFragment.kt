@@ -1,5 +1,7 @@
 package com.example.movieapp.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -8,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.movieapp.R
 import com.example.movieapp.databinding.MainFragmentBinding
-import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view_model.MainViewModel
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +47,9 @@ class MainFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner, observerSignedUser)
 
         binding.buttonLogOut.setOnClickListener {
+
             viewModel.signOut()
+
         }
 
         loadUserData()

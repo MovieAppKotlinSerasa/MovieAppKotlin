@@ -16,6 +16,12 @@
         <menu>
 
             <item
+                android:id="@+id/drawer_nav_settings"
+                android:icon="@drawable/ic_baseline_settings_24"
+                android:title="@string/configura_es" />
+
+
+            <item
                 android:id="@+id/drawer_nav_slideshow"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_slideshow" />
@@ -25,11 +31,6 @@
 
     <item android:title="@string/menu_signout_title">
         <menu>
-
-            <item
-                android:id="@+id/drawer_nav_gallery"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="@string/menu_gallery" />
 
             <item
                 android:id="@+id/drawer_nav_signout"

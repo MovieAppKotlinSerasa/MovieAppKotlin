@@ -23,5 +23,7 @@
     <string name="bottom_nav_search">Pesquisa</string>
     <string name="bottom_nav_home">Principal</string>
     <string name="bottom_nav_favorites">Favoritos</string>
+    <string name="configura_es">Configurações</string>
+    <string name="modo_escuro">Modo escuro</string>
 
 </resources>
