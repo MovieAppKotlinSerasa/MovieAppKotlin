@@ -3,7 +3,6 @@ package com.example.movieapp
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -12,11 +11,7 @@ import com.example.movieapp.databinding.ActivityHomeBinding
 import com.example.movieapp.repository.AuthenticationRepository
 import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view.MovieFragment
-<<<<<<< HEAD
-=======
 import com.example.movieapp.view.SearchFragment
-import com.example.movieapp.view.ui.gallery.GalleryFragment
->>>>>>> dev
 import com.example.movieapp.view.ui.slideshow.SlideshowFragment
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint

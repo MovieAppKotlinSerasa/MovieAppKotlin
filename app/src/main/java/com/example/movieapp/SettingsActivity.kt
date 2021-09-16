@@ -39,6 +39,7 @@ class SettingsActivity : AppCompatActivity() {
 
         _binding.switchSessao.setChecked(sessaoPref)
         _binding.switchModoEscuro.setChecked(modoEscuroPref)
+
         _binding.switchModoEscuro.setOnCheckedChangeListener { _, isChecked ->
 
             with (sharedPref.edit()) {
