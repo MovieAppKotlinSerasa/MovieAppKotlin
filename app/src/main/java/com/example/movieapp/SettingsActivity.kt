@@ -32,9 +32,7 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(_binding.root)
         settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
 
-
         val sharedPref = getSharedPreferences("app_preferences", Context.MODE_PRIVATE) ?: return
-
 
         val sessaoPref = sharedPref.getString("saved_Settings_SalvarSessao", "")!!.toBoolean()
         val modoEscuroPref = sharedPref.getString("saved_Settings_ModoEscuro", "")!!.toBoolean()

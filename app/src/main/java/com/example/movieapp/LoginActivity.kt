@@ -33,4 +33,5 @@ class LoginActivity : AppCompatActivity() {
     private fun startHomeActivity(){
         startActivity(Intent(this, HomeActivity::class.java))
     }
+
 }
