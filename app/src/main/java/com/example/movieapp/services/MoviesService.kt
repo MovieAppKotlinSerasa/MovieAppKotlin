@@ -20,7 +20,7 @@ interface MoviesService {
          */
     ): Response<Movies>
 
-    @GET("/search/movie")
+    @GET("search/movie")
     suspend fun getFilteredMoviesByName(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = "pt-BR",
