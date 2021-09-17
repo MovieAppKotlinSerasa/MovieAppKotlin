@@ -1,6 +1,6 @@
 package com.example.movieapp.repository
 
-import com.example.movieapp.model.Results
+import com.example.movieapp.model.Movie
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
@@ -26,12 +26,12 @@ class FavoritesRepository @Inject constructor(
 
     }
 
-    fun getAllMoviesFromFirebase(callback: (List<Results>?, String?) -> Unit) {
+    fun getAllMoviesFromFirebase(callback: (List<Movie>?, String?) -> Unit) {
 
         val docRef = dataBase.collection("favoritos").document("arthur@gmail.com")
         docRef.get()
             .addOnSuccessListener { document ->
-                val listOf = arrayListOf<Results>()
+                val listOf = arrayListOf<Movie>()
 
                 document.data?.values?.forEach {
 

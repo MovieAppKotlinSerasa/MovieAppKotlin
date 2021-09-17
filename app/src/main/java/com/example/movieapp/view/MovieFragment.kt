@@ -12,7 +12,7 @@ import com.example.movieapp.HomeActivity
 import com.example.movieapp.R
 import com.example.movieapp.adapter.MovieAdapter
 import com.example.movieapp.databinding.MovieFragmentBinding
-import com.example.movieapp.model.Movies
+import com.example.movieapp.model.MovieResult
 import com.example.movieapp.view_model.MovieViewModel
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,11 +29,13 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
 
     private lateinit var viewModel: MovieViewModel
     private lateinit var binding: MovieFragmentBinding
-    private var selectedMovie: Movies? = null
+    private var selectedMovie: MovieResult? = null
     private lateinit var navView: NavigationView
-    private val adapter = MovieAdapter()
+    private val adapter = MovieAdapter{
+        MovieDetailFragment.newInstance(it.id).show(parentFragmentManager, "dialog_movie_detail")
+    }
 
-    private val observerMovie = Observer<Movies> {
+    private val observerMovie = Observer<MovieResult> {
         adapter.updateMovies(it.results)
     }
 
@@ -49,7 +51,7 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
         binding = MovieFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
 
-        viewModel.movies.observe(viewLifecycleOwner, observerMovie)
+        viewModel.movieResult.observe(viewLifecycleOwner, observerMovie)
         viewModel.currentUser.observe(viewLifecycleOwner, observeCurrentUser)
         viewModel.getMovies()
         viewModel.fetchCurrentUser()
