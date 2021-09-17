@@ -8,7 +8,6 @@ data class MovieResult(
     val page: Int,
     @SerializedName("results")
     val results: List<Movie>
-
 )
 
 data class Movie(

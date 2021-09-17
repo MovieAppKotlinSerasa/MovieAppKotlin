@@ -6,19 +6,25 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationManagerCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.movieapp.databinding.ActivityHomeBinding
 import com.example.movieapp.repository.AuthenticationRepository
+import com.example.movieapp.services.NotificationHandler
 import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view.MovieFragment
 import com.example.movieapp.view.SearchFragment
-import com.example.movieapp.view.ui.slideshow.SlideshowFragment
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var notificationHandler: NotificationHandler
 
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
@@ -82,7 +88,7 @@ class HomeActivity : AppCompatActivity() {
 
                 R.id.drawer_nav_home -> replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
                 R.id.drawer_nav_settings -> startSettingsActivity()
-                R.id.drawer_nav_slideshow -> replaceView(SlideshowFragment(), R.id.nav_host_fragment_home_container)
+                R.id.drawer_nav_notifications -> showNotification()
                 R.id.drawer_nav_signout -> signOut()
             }
             true
@@ -108,4 +114,10 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+    private fun showNotification() {
+        notificationHandler.createNotification("Notificação", "Estamos sentindo sua falta! Venha ver as novidades!").run {
+            val notificationManager = NotificationManagerCompat.from(applicationContext)
+            notificationManager.notify(1, this)
+        }
+    }
 }
