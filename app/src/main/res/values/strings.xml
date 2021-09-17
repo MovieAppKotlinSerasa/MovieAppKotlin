@@ -23,6 +23,8 @@
     <string name="bottom_nav_search">Pesquisa</string>
     <string name="bottom_nav_home">Principal</string>
     <string name="bottom_nav_favorites">Favoritos</string>
+    <string name="configura_es">Configurações</string>
+    <string name="modo_escuro">Modo escuro</string>
     <string name="description">Description</string>
     <string name="movie_title">Title</string>
     <string name="type_to_search_for_a_movie">Type to search for a movie</string>
