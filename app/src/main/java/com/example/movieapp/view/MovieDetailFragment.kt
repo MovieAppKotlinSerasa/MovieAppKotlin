@@ -99,7 +99,6 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
             viewModel.addFavorite(
                 selectedMovie.id
             )
-            it.setBackgroundColor(R.color.blue_green)
         }
 
     }

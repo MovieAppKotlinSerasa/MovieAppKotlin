@@ -16,6 +16,36 @@ class FavoritesRepository @Inject constructor(
 
     private val dataBase = Firebase.firestore
 
+    fun removeFavorite(id: Long, onComplete: (Boolean) -> Unit) {
+        FirebaseAuth.getInstance().currentUser?.let { user ->
+            dataBase
+                .collection("favoritos")
+                .document(user.uid)
+                .get()
+                .addOnSuccessListener {
+
+                    val listOfFilmes = it["filmes"]?.let { it as ArrayList<Any> } ?: arrayListOf()
+
+                    if (listOfFilmes.contains(id)) {
+
+                        listOfFilmes.remove(id)
+
+                        dataBase
+                            .collection("favoritos")
+                            .document(user.uid)
+                            .set(
+                                hashMapOf(
+                                    "filmes" to listOfFilmes
+                                )
+                            ).addOnSuccessListener {
+                                onComplete(true)
+                            }
+                    }
+                }
+        }
+    }
+
+
     fun addFavorite(id: Long) {
         FirebaseAuth.getInstance().currentUser?.let { user ->
             dataBase

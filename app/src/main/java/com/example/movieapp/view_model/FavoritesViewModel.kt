@@ -18,15 +18,21 @@ class FavoritesViewModel @Inject constructor(
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> = _movies
 
-    fun getMovies() {
-
+    fun removeMovie(id: Long?) {
         viewModelScope.launch {
+            if (id != null) {
+                favoritesRepository.removeFavorite(id.toLong()) {
+                    getMovies()
+                }
+            }
+        }
+    }
 
+    fun getMovies() {
+        viewModelScope.launch {
             favoritesRepository.getAllMoviesFromFirebase{ bills, error ->
                 _movies.value = bills
             }
-
         }
-
     }
 }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.R
 import com.example.movieapp.adapter.FavoritesAdapter
 import com.example.movieapp.databinding.FavoritesFragmentBinding
+import com.example.movieapp.databinding.ItemFavoritosBinding
 import com.example.movieapp.model.Movie
 import com.example.movieapp.view_model.FavoritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +23,10 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
 
     private lateinit var viewModel: FavoritesViewModel
     private lateinit var _binding: FavoritesFragmentBinding
-    private val adapter = FavoritesAdapter()
+
+    private val adapter = FavoritesAdapter {
+        viewModel.removeMovie(it.id)
+    }
 
     private val observerMovie = Observer<List<Movie>> {
         adapter.updateMovies(it)
@@ -40,6 +44,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
 
         _binding.FavoritesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         _binding.FavoritesRecyclerView.adapter = adapter
+
 
     }
 

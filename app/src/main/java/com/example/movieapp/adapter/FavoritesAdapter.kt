@@ -3,6 +3,7 @@ package com.example.movieapp.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -10,7 +11,7 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.ItemFavoritosBinding
 import com.example.movieapp.model.Movie
 
-class FavoritesAdapter : RecyclerView.Adapter<FavoritesViewHolder>() {
+class FavoritesAdapter (val onClick : (Movie) -> Unit) : RecyclerView.Adapter<FavoritesViewHolder>() {
 
     private var listOfMovies: MutableList<Movie> = mutableListOf()
 
@@ -20,8 +21,12 @@ class FavoritesAdapter : RecyclerView.Adapter<FavoritesViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
-        val positionToCreateInfiniteLoop = position % listOfMovies.size
-        holder.bind(listOfMovies[positionToCreateInfiniteLoop])
+        listOfMovies[position].apply {
+            holder.bind(this)
+            holder.itemView.findViewById<ImageView>(R.id.RemoveFavoriteImageView).setOnClickListener {
+                onClick(this)
+            }
+        }
     }
 
     override fun getItemCount(): Int = listOfMovies.size
@@ -44,6 +49,8 @@ class FavoritesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .transform(CenterCrop())
             .into(binding.imageView)
         binding.textView4.text = result.title
+
     }
+
 
 }
