@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movieapp.model.Movies
+import com.example.movieapp.model.MovieResult
 import com.example.movieapp.repository.AuthenticationRepository
 import com.example.movieapp.repository.MoviesRepository
 import com.google.firebase.auth.FirebaseUser
@@ -18,8 +18,8 @@ class MovieViewModel @Inject constructor(
     private val moviesRepository: MoviesRepository
     ) : ViewModel() {
 
-    private val _movies = MutableLiveData<Movies>()
-    val movies: LiveData<Movies> = _movies
+    private val _movies = MutableLiveData<MovieResult>()
+    val movieResult: LiveData<MovieResult> = _movies
 
     private val _currentUser = MutableLiveData<FirebaseUser>()
     val currentUser: LiveData<FirebaseUser> = _currentUser

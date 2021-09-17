@@ -15,7 +15,7 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 @SmallTest
-class FavoritesMoviesDAOTest {
+class FavoritesMovieResultDAOTest {
 
     private lateinit var favMoviesDao: FavoritesMoviesDAO
     private lateinit var database: AppDatabase
