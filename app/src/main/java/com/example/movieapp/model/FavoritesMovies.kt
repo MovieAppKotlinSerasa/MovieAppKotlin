@@ -11,4 +11,5 @@ data class FavoritesMovies(
     val movie_title: String,
     val movie_image: String,
     val movie_description: String
+
 )

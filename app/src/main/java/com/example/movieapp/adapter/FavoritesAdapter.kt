@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.movieapp.R
-import com.example.movieapp.databinding.ItemMovieBinding
+import com.example.movieapp.databinding.ItemFavoritosBinding
 import com.example.movieapp.model.Results
 
-class MovieAdapter: RecyclerView.Adapter<MovieViewHolder>() {
+class FavoritesAdapter : RecyclerView.Adapter<FavoritesViewHolder>() {
 
     private var listOfMovies: MutableList<Results> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-        return MovieViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_favoritos, parent, false)
+        return FavoritesViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
         val positionToCreateInfiniteLoop = position % listOfMovies.size
         holder.bind(listOfMovies[positionToCreateInfiniteLoop])
     }
@@ -31,18 +31,19 @@ class MovieAdapter: RecyclerView.Adapter<MovieViewHolder>() {
         listOfMovies.addAll(movie)
         notifyDataSetChanged()
     }
+
 }
 
-class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class FavoritesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private var binding: ItemMovieBinding = ItemMovieBinding.bind(itemView)
+    private var binding: ItemFavoritosBinding = ItemFavoritosBinding.bind(itemView)
 
     fun bind(result: Results) {
         Glide.with(itemView)
             .load("https://image.tmdb.org/t/p/w342${result.poster_path}")
             .transform(CenterCrop())
-            .into(binding.itemMoviePosterImageView)
-        binding.movieTitleTextView.text = result.title
+            .into(binding.imageView)
+        binding.textView4.text = result.title
     }
 
 }

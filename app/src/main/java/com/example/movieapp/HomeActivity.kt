@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.example.movieapp.databinding.ActivityHomeBinding
 import com.example.movieapp.repository.AuthenticationRepository
 import com.example.movieapp.utils.replaceView
+import com.example.movieapp.view.FavoritesFragment
 import com.example.movieapp.view.MovieFragment
 import com.example.movieapp.view.SearchFragment
 import com.example.movieapp.view.ui.slideshow.SlideshowFragment
@@ -42,11 +43,11 @@ class HomeActivity : AppCompatActivity() {
 
                 R.id.bottom_nav_home -> replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
 
-//                R.id.bottom_nav_search -> startSettingsActivity()
-
                 R.id.bottom_nav_search -> replaceView(SearchFragment.newInstance(), R.id.nav_host_fragment_home_container)
 
-                R.id.bottom_nav_favorites -> replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
+                R.id.bottom_nav_favorites -> replaceView(FavoritesFragment.newInstance(), R.id.nav_host_fragment_home_container)
+
+//                R.id.imageViewUserAvatar ->
 
             }
             true

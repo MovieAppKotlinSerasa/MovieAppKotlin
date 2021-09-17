@@ -28,5 +28,6 @@
     <string name="description">Description</string>
     <string name="movie_title">Title</string>
     <string name="type_to_search_for_a_movie">Type to search for a movie</string>
+    <string name="meus_favoritos">Meus Favoritos</string>
 
 </resources>
