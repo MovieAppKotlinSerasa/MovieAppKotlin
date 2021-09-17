@@ -25,6 +25,7 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPref = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
         supportActionBar?.setTitle("Configurações")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -32,32 +33,26 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(_binding.root)
         settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
 
-        val sharedPref = getSharedPreferences("app_preferences", Context.MODE_PRIVATE) ?: return
-
-        val sessaoPref = sharedPref.getString("saved_Settings_SalvarSessao", "")!!.toBoolean()
-        val modoEscuroPref = sharedPref.getString("saved_Settings_ModoEscuro", "")!!.toBoolean()
-
-        _binding.switchSessao.setChecked(sessaoPref)
-        _binding.switchModoEscuro.setChecked(modoEscuroPref)
+        sharedPref.apply {
+            val sessaoPref = this.getBoolean("saved_Settings_SalvarSessao", false)
+            val modoEscuroPref = this.getBoolean("saved_Settings_ModoEscuro", false)
+            _binding.switchSessao.setChecked(sessaoPref)
+            _binding.switchModoEscuro.setChecked(modoEscuroPref)
+        }
 
         _binding.switchModoEscuro.setOnCheckedChangeListener { _, isChecked ->
-
             with (sharedPref.edit()) {
-                putString("saved_Settings_ModoEscuro", isChecked.toString())
+                putBoolean("saved_Settings_ModoEscuro", isChecked)
                 commit()
             }
-
         }
 
         _binding.switchSessao.setOnCheckedChangeListener { _, isChecked ->
-
             with (sharedPref.edit()) {
-                putString("saved_Settings_SalvarSessao", isChecked.toString())
+                putBoolean("saved_Settings_SalvarSessao", isChecked)
                 commit()
             }
-
         }
-
 
     }
 

@@ -45,9 +45,10 @@ class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(result: Movie) {
         Glide.with(itemView)
-            .load("https://image.tmdb.org/t/p/w342${result.posterPath}")
+            .load("https://image.tmdb.org/t/p/w342${result.poster_path}")
             .transform(CenterCrop())
             .into(binding.itemMoviePosterImageView)
-        binding.movieTitleTextView.text = result.original_title
+        binding.movieTitleTextView.text = result.title
     }
+
 }

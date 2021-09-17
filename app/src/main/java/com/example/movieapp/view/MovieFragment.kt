@@ -20,8 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.google.android.material.navigation.NavigationView
 
 
-
-
 @AndroidEntryPoint
 class MovieFragment : Fragment(R.layout.movie_fragment) {
 

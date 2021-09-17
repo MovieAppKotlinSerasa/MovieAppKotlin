@@ -1,5 +1,6 @@
 package com.example.movieapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -15,12 +16,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
 
-        if (FirebaseAuth.getInstance().currentUser != null) {
-            startHomeActivity()
-        } else {
-            replaceView(LoginFragment.newInstance(), R.id.container)
-        }
+        getSharedPreferences("app_preferences", Context.MODE_PRIVATE).apply {
 
+            if (FirebaseAuth.getInstance().currentUser != null && getBoolean("saved_Settings_SalvarSessao", false)) {
+                startHomeActivity()
+            } else {
+                replaceView(LoginFragment.newInstance(), R.id.container)
+            }
+
+        }
     }
 
     override fun onResume() {

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.model.MovieResult
 import com.example.movieapp.repository.AuthenticationRepository
+import com.example.movieapp.repository.FavoritesRepository
 import com.example.movieapp.repository.MoviesRepository
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieViewModel @Inject constructor(
     private val authRepository: AuthenticationRepository,
-    private val moviesRepository: MoviesRepository
+    private val moviesRepository: MoviesRepository,
+    private val favoritesRepository: FavoritesRepository
     ) : ViewModel() {
 
     private val _movies = MutableLiveData<MovieResult>()
@@ -35,6 +37,8 @@ class MovieViewModel @Inject constructor(
         viewModelScope.launch {
             moviesRepository.getAllMoviesFromService(1, listOf(12,16))?.let { movies ->
                 _movies.value = movies
+//                val listOfIds = movies.results.map { it.id }
+//                favoritesRepository.addFavorite(listOfIds)
             }
         }
     }
