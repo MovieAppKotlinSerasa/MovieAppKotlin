@@ -24,7 +24,7 @@ class FavoritesAdapter : RecyclerView.Adapter<FavoritesViewHolder>() {
         holder.bind(listOfMovies[positionToCreateInfiniteLoop])
     }
 
-    override fun getItemCount(): Int = listOfMovies.size*3
+    override fun getItemCount(): Int = listOfMovies.size
 
     fun updateMovies(movie: List<Movie>) {
         listOfMovies.clear()

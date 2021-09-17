@@ -1,19 +1,20 @@
 package com.example.movieapp.view
 
+import android.annotation.SuppressLint
 import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
 import android.os.Build
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.movieapp.R
 import com.example.movieapp.databinding.MovieDetailFragmentBinding
-import com.example.movieapp.model.MovieTrailerResult
 import com.example.movieapp.model.Movie
+import com.example.movieapp.model.MovieTrailerResult
 import com.example.movieapp.view_model.MovieDetailViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -35,8 +36,11 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
 
     private lateinit var viewModel: MovieDetailViewModel
     private lateinit var binding: MovieDetailFragmentBinding
+    private lateinit var selectedMovie: Movie
 
     private val movieObserver = Observer<Movie> { result ->
+
+        selectedMovie = result
 
         Glide.with(requireView())
             .load("https://image.tmdb.org/t/p/w342${result.poster_path}")
@@ -78,6 +82,7 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
         return inflater.inflate(R.layout.movie_detail_fragment, container, false)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MovieDetailViewModel::class.java)
@@ -88,6 +93,13 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
         val id = arguments?.getLong("movie_id")
         if (id != null) {
             viewModel.getMovieById(id)
+        }
+
+        binding.movieDetailFavoriteImageView.setOnClickListener {
+            viewModel.addFavorite(
+                selectedMovie.id
+            )
+            it.setBackgroundColor(R.color.blue_green)
         }
 
     }
