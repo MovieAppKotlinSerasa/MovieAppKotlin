@@ -1,21 +1,31 @@
 package com.example.movieapp
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.navigation.NavigationView
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationManagerCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.movieapp.databinding.ActivityHomeBinding
 import com.example.movieapp.repository.AuthenticationRepository
+import com.example.movieapp.services.NotificationHandler
 import com.example.movieapp.utils.replaceView
+import com.example.movieapp.view.FavoritesFragment
 import com.example.movieapp.view.MovieFragment
-import com.example.movieapp.view.ui.gallery.GalleryFragment
-import com.example.movieapp.view.ui.slideshow.SlideshowFragment
+import com.example.movieapp.view.SearchFragment
+import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var notificationHandler: NotificationHandler
 
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
@@ -38,11 +48,21 @@ class HomeActivity : AppCompatActivity() {
             when(it.itemId) {
 
                 R.id.bottom_nav_home -> replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
-                R.id.bottom_nav_search -> replaceView(GalleryFragment(), R.id.nav_host_fragment_home_container)
-                R.id.bottom_nav_favorites -> replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
+
+                R.id.bottom_nav_search -> replaceView(SearchFragment.newInstance(), R.id.nav_host_fragment_home_container)
+
+                R.id.bottom_nav_favorites -> replaceView(FavoritesFragment.newInstance(), R.id.nav_host_fragment_home_container)
+
+//                R.id.imageViewUserAvatar ->
 
             }
             true
+        }
+    }
+
+    private fun startSettingsActivity(){
+        Intent(this, SettingsActivity::class.java).apply {
+            startActivity(this)
         }
     }
 
@@ -68,8 +88,8 @@ class HomeActivity : AppCompatActivity() {
             when(it.itemId) {
 
                 R.id.drawer_nav_home -> replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
-                R.id.drawer_nav_gallery -> replaceView(GalleryFragment(), R.id.nav_host_fragment_home_container)
-                R.id.drawer_nav_slideshow -> replaceView(SlideshowFragment(), R.id.nav_host_fragment_home_container)
+                R.id.drawer_nav_settings -> startSettingsActivity()
+                R.id.drawer_nav_notifications -> showNotification()
                 R.id.drawer_nav_signout -> signOut()
             }
             true
@@ -84,8 +104,21 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun signOut() {
+
+        getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
+            .edit()
+            .clear()
+            .apply()
+
         AuthenticationRepository().signOut()
         finish()
+
     }
 
+    private fun showNotification() {
+        notificationHandler.createNotification("Notificação", "Estamos sentindo sua falta! Venha ver as novidades!").run {
+            val notificationManager = NotificationManagerCompat.from(applicationContext)
+            notificationManager.notify(1, this)
+        }
+    }
 }
