@@ -8,4 +8,6 @@
     <color name="blue_green">#219EBC</color>
     <color name="prussian_blue">#023047</color>
     <color name="dark_gray">#212121</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="red">#CF000F</color>
 </resources>

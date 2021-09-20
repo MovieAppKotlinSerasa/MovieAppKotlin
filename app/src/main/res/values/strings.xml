@@ -27,8 +27,12 @@
     <string name="modo_escuro">Modo escuro</string>
     <string name="description">Description</string>
     <string name="movie_title">Title</string>
-    <string name="type_to_search_for_a_movie">Type to search for a movie</string>
+    <string name="type_to_search_for_a_movie">Pesquisar filme</string>
+    <string name="login_email">E-mail</string>
+    <string name="login_password">Senha</string>
     <string name="meus_favoritos">Meus Favoritos</string>
     <string name="nome_do_filme">Nome do Filme</string>
+    <string name="enter_button">Entrar</string>
+    <string name="signup_button">Cadastrar</string>
 
 </resources>
