@@ -1,7 +1,7 @@
 package com.example.movieapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view.OfflineFragment
 import dagger.hilt.android.AndroidEntryPoint

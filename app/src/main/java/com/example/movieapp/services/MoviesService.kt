@@ -17,9 +17,6 @@ interface MoviesService {
         @Query("sort_by") sort: String = "popularity.desc",
         @Query("page") page: Int,
         @Query("with_genres") genre: String,
-        /** to do -> val numbers = listOf(1, 2, 3, 4, 5, 6)
-         * numbers.joinToString() // 1, 2, 3, 4, 5, 6
-         */
     ): Response<MovieResult>
 
     @GET("/3/search/movie")
@@ -44,7 +41,7 @@ interface MoviesService {
         @Query("language") language: String = "pt-BR"
     ): Response<MovieTrailerResult>
 
-    @GET("genre/movie/list")
+    @GET("/3/genre/movie/list")
     suspend fun getGenreList(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = "pt-BR"

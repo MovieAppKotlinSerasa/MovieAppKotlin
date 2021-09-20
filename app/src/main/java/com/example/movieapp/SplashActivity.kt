@@ -1,20 +1,12 @@
 package com.example.movieapp
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.viewModelScope
+import androidx.appcompat.app.AppCompatActivity
 import com.example.movieapp.databinding.ActivitySplashBinding
 import com.example.movieapp.utils.checkInternet
-import com.example.movieapp.utils.replaceView
-import com.example.movieapp.view.LoginFragment
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
