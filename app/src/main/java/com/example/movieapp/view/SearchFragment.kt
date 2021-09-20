@@ -28,16 +28,16 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     }
     private lateinit var viewModel: SearchViewModel
 
-    private val observeMovies = Observer<MovieResult> {
-        adapter.updateMovies(it.results)
-    }
+//    private val observeMovies = Observer<MovieResult> {
+//        adapter.updateMovies(it.results)
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = SearchFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
 
-        viewModel.movieResult.observe(viewLifecycleOwner, observeMovies)
+//        viewModel.movieResult.observe(viewLifecycleOwner, observeMovies)
         binding.searchRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.searchRecyclerView.adapter = adapter
         setupFilter()

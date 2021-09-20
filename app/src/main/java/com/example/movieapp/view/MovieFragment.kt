@@ -7,11 +7,14 @@ import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.HomeActivity
 import com.example.movieapp.R
+import com.example.movieapp.adapter.GenreAdapter
 import com.example.movieapp.adapter.MovieAdapter
 import com.example.movieapp.databinding.MovieFragmentBinding
+import com.example.movieapp.model.Genre
+import com.example.movieapp.model.GenreResult
+import com.example.movieapp.model.Movie
 import com.example.movieapp.model.MovieResult
 import com.example.movieapp.view_model.MovieViewModel
 import com.google.firebase.auth.FirebaseUser
@@ -30,13 +33,14 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
     private lateinit var viewModel: MovieViewModel
     private lateinit var binding: MovieFragmentBinding
     private var selectedMovie: MovieResult? = null
+    private var listOfListMovies: MutableList<List<Movie>> = mutableListOf()
+    private var listOfGenres: List<Genre> = emptyList()
     private lateinit var navView: NavigationView
-    private val adapter = MovieAdapter{
-        MovieDetailFragment.newInstance(it.id).show(parentFragmentManager, "dialog_movie_detail")
-    }
+    private val genreAdapter = GenreAdapter(::onClickItem)
 
-    private val observerMovie = Observer<MovieResult> {
-        adapter.updateMovies(it.results)
+    private fun onClickItem(movie: Movie) {
+        MovieDetailFragment.newInstance(movie.id).show(parentFragmentManager, "dialog_movie_detail")
+
     }
 
     private val observeCurrentUser = Observer<FirebaseUser> {
@@ -46,17 +50,22 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
         navUserEmail.text = it.email
     }
 
+    private val observerListOfGenres = Observer<HashMap<Genre, List<Movie>?>> { genreWithMovies ->
+        genreAdapter.update(genreWithMovies)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = MovieFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
 
-        viewModel.movieResult.observe(viewLifecycleOwner, observerMovie)
         viewModel.currentUser.observe(viewLifecycleOwner, observeCurrentUser)
-        viewModel.getMovies()
+        viewModel.listOfGenres.observe(viewLifecycleOwner, observerListOfGenres)
+//        viewModel.getMovies()
         viewModel.fetchCurrentUser()
+        viewModel.getListOfGenres()
 
-        binding.moviesRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-        binding.moviesRecyclerView.adapter = adapter
+        binding.moviesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.moviesRecyclerView.adapter = genreAdapter
     }
 }

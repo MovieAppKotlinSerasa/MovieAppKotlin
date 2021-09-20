@@ -1,6 +1,7 @@
 package com.example.movieapp.di
 
 import android.content.Context
+import com.example.movieapp.adapter.GenreAdapter
 import com.example.movieapp.repository.AuthenticationRepository
 import com.example.movieapp.repository.MoviesRepository
 import com.example.movieapp.services.MoviesService
@@ -27,6 +28,9 @@ object HiltModule {
     @Provides
     fun provideNotificationHandler(@ApplicationContext context: Context): NotificationHandler =
         NotificationHandler(context)
+
+//    @Provides
+//    fun provideAdapterContext(@ApplicationContext context: Context): GenreAdapter = GenreAdapter(context)
 }
 
 //    @Provides

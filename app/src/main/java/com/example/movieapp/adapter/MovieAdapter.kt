@@ -11,9 +11,10 @@ import com.example.movieapp.R
 import com.example.movieapp.databinding.ItemMovieBinding
 import com.example.movieapp.model.Movie
 
-class MovieAdapter(val onClick: (Movie) -> Unit): RecyclerView.Adapter<MovieViewHolder>() {
-
-    private var listOfMovies: MutableList<Movie> = mutableListOf()
+class MovieAdapter(
+    private val listOfMovies: List<Movie> = mutableListOf(),
+    val onClick: (Movie) -> Unit,
+) : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
@@ -24,19 +25,14 @@ class MovieAdapter(val onClick: (Movie) -> Unit): RecyclerView.Adapter<MovieView
         val positionToCreateInfiniteLoop = position % listOfMovies.size
         listOfMovies[positionToCreateInfiniteLoop].apply {
             holder.bind(this)
-            holder.itemView.findViewById<CardView>(R.id.cardViewMovie).setOnClickListener{
+            holder.itemView.findViewById<CardView>(R.id.cardViewMovie).setOnClickListener {
                 onClick(this)
             }
         }
     }
 
-    override fun getItemCount(): Int = listOfMovies.size*3
+    override fun getItemCount(): Int = listOfMovies.size * 3
 
-    fun updateMovies(movie: List<Movie>) {
-        listOfMovies.clear()
-        listOfMovies.addAll(movie)
-        notifyDataSetChanged()
-    }
 }
 
 class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
