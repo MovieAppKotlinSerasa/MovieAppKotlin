@@ -1,5 +1,6 @@
 package com.example.movieapp.repository
 
+import com.example.movieapp.model.GenreResult
 import com.example.movieapp.model.MovieTrailerResult
 import com.example.movieapp.model.MovieResult
 import com.example.movieapp.model.Movie
@@ -13,10 +14,10 @@ class MoviesRepository @Inject constructor(
     private val moviesRepository: MoviesService
 ) {
 
-    suspend fun getAllMoviesFromService(page: Int, genres: List<Int>): MovieResult? {
+    suspend fun getAllMoviesFromService(page: Int, genre: Int): MovieResult? {
 
         return withContext(Dispatchers.Default) {
-            val response = moviesRepository.getMostPopularMovies(page = page, genres = genres.joinToString())
+            val response = moviesRepository.getMostPopularMovies(page = page, genre = genre.toString())
             chargeData(response)
         }
 
@@ -41,6 +42,13 @@ class MoviesRepository @Inject constructor(
     suspend fun getMovieTrailerById(id: Long): MovieTrailerResult? {
         return withContext(Dispatchers.Default) {
             val response = moviesRepository.getMovieTrailerByID(id)
+            chargeData(response)
+        }
+    }
+
+    suspend fun getListOfGenres(): GenreResult? {
+        return withContext(Dispatchers.Default) {
+            val response = moviesRepository.getGenreList()
             chargeData(response)
         }
     }
