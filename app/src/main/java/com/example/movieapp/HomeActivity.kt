@@ -16,8 +16,8 @@ import com.example.movieapp.view.FavoritesFragment
 import com.example.movieapp.view.MovieFragment
 import com.example.movieapp.view.SearchFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 
@@ -26,6 +26,9 @@ class HomeActivity : AppCompatActivity() {
 
     @Inject
     lateinit var notificationHandler: NotificationHandler
+
+    @Inject
+    lateinit var auth : FirebaseAuth
 
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
@@ -110,7 +113,8 @@ class HomeActivity : AppCompatActivity() {
             .clear()
             .apply()
 
-        AuthenticationRepository().signOut()
+        AuthenticationRepository(auth).signOut()
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
 
     }

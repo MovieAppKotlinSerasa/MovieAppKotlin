@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 interface MoviesService {
 
-    @GET("movie/popular")
+    @GET("/3/movie/popular")
     suspend fun getMostPopularMovies(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = "pt-BR",
@@ -22,7 +22,7 @@ interface MoviesService {
          */
     ): Response<MovieResult>
 
-    @GET("search/movie")
+    @GET("/3/search/movie")
     suspend fun getFilteredMoviesByName(
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = "pt-BR",
@@ -30,14 +30,14 @@ interface MoviesService {
         @Query("page") page: Int,
     ): Response<MovieResult>
 
-    @GET("movie/{movie_id}")
+    @GET("/3/movie/{movie_id}")
     suspend fun getMovieByID(
         @Path("movie_id") id: Long,
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("language") language: String = "pt-BR"
     ): Response<Movie>
 
-    @GET("movie/{movie_id}/videos")
+    @GET("/3/movie/{movie_id}/videos")
     suspend fun getMovieTrailerByID(
         @Path("movie_id") id: Long,
         @Query("api_key") apiKey: String = BuildConfig.API_KEY,

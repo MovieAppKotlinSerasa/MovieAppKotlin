@@ -29,7 +29,6 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
 
     private lateinit var viewModel: MovieViewModel
     private lateinit var binding: MovieFragmentBinding
-    private var selectedMovie: MovieResult? = null
     private lateinit var navView: NavigationView
     private val adapter = MovieAdapter{
         MovieDetailFragment.newInstance(it.id).show(parentFragmentManager, "dialog_movie_detail")

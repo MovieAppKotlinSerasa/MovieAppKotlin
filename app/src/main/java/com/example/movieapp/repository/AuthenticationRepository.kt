@@ -5,11 +5,10 @@ import com.google.firebase.auth.FirebaseUser
 import javax.inject.Inject
 
 class AuthenticationRepository @Inject constructor(
-
+    private val auth : FirebaseAuth
 ) {
 
-    private val auth = FirebaseAuth.getInstance()
-
+//    private val auth = FirebaseAuth.getInstance()
     fun signInWithEmailPassword(
         email: String,
         password: String,
