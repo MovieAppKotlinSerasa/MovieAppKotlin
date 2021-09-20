@@ -42,7 +42,7 @@ class HomeActivity : AppCompatActivity() {
     val REQUEST_CODE = 100
 
     // Create a reference with an initial file path and name
-    private val pathReference = storageReference.child("Users/$uid")
+    private val pathReference = storageReference.child("Users/Profile/ProfilePicture/$uid")
     private val ONE_MEGABYTE: Long = 1024 * 1024
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -176,7 +176,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun uploadProfilePic(data: Uri?, onComplete: (Boolean) -> Unit) {
         if (data != null) {
-            FirebaseStorage.getInstance().getReference("Users/$uid").putFile(data)
+            FirebaseStorage.getInstance().getReference("Users/Profile/ProfilePicture/$uid").putFile(data)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         onComplete(true)
