@@ -1,7 +1,9 @@
 package com.example.movieapp.repository
 
+import com.example.movieapp.database.AppDatabase
 import com.example.movieapp.model.Movie
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
@@ -11,10 +13,11 @@ import javax.inject.Inject
 
 
 class FavoritesRepository @Inject constructor(
-    private val moviesRepository: MoviesRepository
+    private val moviesRepository: MoviesRepository,
+    private val dataBase: FirebaseFirestore
 ) {
 
-    private val dataBase = Firebase.firestore
+//    private val dataBase = Firebase.firestore
 
     fun removeFavorite(id: Long, onComplete: (Boolean) -> Unit) {
         FirebaseAuth.getInstance().currentUser?.let { user ->
@@ -99,7 +102,7 @@ class FavoritesRepository @Inject constructor(
                     }
                 }
                 .addOnFailureListener {
-                    callback(null, "Error diferente")
+                    callback(null, it.message)
                 }
         }
     }

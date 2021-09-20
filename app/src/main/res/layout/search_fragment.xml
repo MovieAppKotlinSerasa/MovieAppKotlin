@@ -6,16 +6,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.SearchFragment">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchTextLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_lupa_foreground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/type_to_search_for_a_movie"
-        android:padding="12dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:hint="@string/type_to_search_for_a_movie" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchRecyclerView"
@@ -24,7 +42,7 @@
         android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchEditText"
+        app:layout_constraintTop_toBottomOf="@id/searchTextLayout"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

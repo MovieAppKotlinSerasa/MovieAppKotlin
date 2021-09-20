@@ -24,8 +24,13 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
     private lateinit var viewModel: FavoritesViewModel
     private lateinit var _binding: FavoritesFragmentBinding
 
-    private val adapter = FavoritesAdapter {
-        viewModel.removeMovie(it.id)
+    private val adapter = FavoritesAdapter(false) { descriptionClick, removeClick ->
+        if(descriptionClick != null) {
+            MovieDetailFragment.newInstance(descriptionClick.id).show(parentFragmentManager, "dialog_movie_detail")
+        }
+        if(removeClick != null) {
+            viewModel.removeMovie(removeClick.id)
+        }
     }
 
     private val observerMovie = Observer<List<Movie>> {
@@ -42,7 +47,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         viewModel.movies.observe(viewLifecycleOwner, observerMovie)
         viewModel.getMovies()
 
-        _binding.FavoritesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+        _binding.FavoritesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         _binding.FavoritesRecyclerView.adapter = adapter
 
 

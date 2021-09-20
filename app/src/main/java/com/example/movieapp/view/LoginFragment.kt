@@ -30,6 +30,7 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
         Intent(requireContext(), HomeActivity::class.java).apply {
             startActivity(this)
         }
+        requireActivity().finish()
     }
 
     private val observerError = Observer<String>{
@@ -45,12 +46,12 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
 
         binding = LoginFragmentBinding.bind(view)
 
-        binding.buttonEntrar.setOnClickListener {
+        binding.enterButton.setOnClickListener {
 
-            val inputEmail = binding.editTextTextEmailUser.text
-            val inputPassword = binding.editTextTextPassword.text
+            val inputEmail = binding.editTextEmailUser.text
+            val inputPassword = binding.editTextPassword.text
 
-            if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()){
+            if (!inputEmail.isNullOrEmpty() && !inputPassword.isNullOrEmpty()){
                 viewModel.signIn(inputEmail.toString(), inputPassword.toString())
             } else {
                 Snackbar.make(view, "Preencha todos os campos",
@@ -59,7 +60,7 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
 
         }
 
-        binding.buttonCadastrar.setOnClickListener {
+        binding.signUpButton.setOnClickListener {
             requireActivity().replaceView(SignUpFragment.newInstance(), R.id.container)
         }
 

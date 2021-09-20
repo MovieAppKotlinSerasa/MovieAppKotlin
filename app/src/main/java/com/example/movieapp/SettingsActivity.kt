@@ -3,16 +3,12 @@ package com.example.movieapp
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.movieapp.databinding.ActivitySettingsBinding
-import com.example.movieapp.view.ui.gallery.SettingsViewModel
 
 class SettingsActivity : AppCompatActivity() {
 
-    private lateinit var settingsViewModel: SettingsViewModel
     private lateinit var _binding: ActivitySettingsBinding
     private lateinit var sharedPref : SharedPreferences
 
@@ -31,7 +27,6 @@ class SettingsActivity : AppCompatActivity() {
 
         _binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(_binding.root)
-        settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
 
         sharedPref.apply {
             val sessaoPref = this.getBoolean("saved_Settings_SalvarSessao", false)

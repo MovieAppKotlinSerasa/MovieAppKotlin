@@ -27,6 +27,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/movieDetailOfflineImageView"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
+        android:scaleType="centerCrop"
+        android:visibility="invisible"
+        android:src="@drawable/ic_movie_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/movieDetailVideoView"
+        app:layout_constraintEnd_toEndOf="@+id/movieDetailImageView"
+        app:layout_constraintStart_toStartOf="@+id/movieDetailImageView"
+        app:layout_constraintTop_toTopOf="@+id/movieDetailImageView" />
+
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/movieDetailGenreTextView"-->
 <!--        android:layout_width="wrap_content"-->
@@ -63,13 +75,15 @@
         app:layout_constraintStart_toEndOf="@+id/movieDetailAverageVoteTextView"
         app:layout_constraintTop_toTopOf="@+id/movieDetailGenreTextView" />
 
-    <ImageView
-        android:id="@+id/movieDetailFavoriteImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/movieDetailFavoriteCheckbox"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_baseline_favorite_border_24"
+        app:useMaterialThemeColors="false"
+        android:button="@drawable/checkbox"
+        android:buttonTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailVideoView" />
 

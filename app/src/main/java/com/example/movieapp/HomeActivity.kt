@@ -33,6 +33,9 @@ class HomeActivity : AppCompatActivity() {
     @Inject
     lateinit var notificationHandler: NotificationHandler
 
+    @Inject
+    lateinit var auth : FirebaseAuth
+
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
@@ -159,7 +162,8 @@ class HomeActivity : AppCompatActivity() {
             .clear()
             .apply()
 
-        AuthenticationRepository().signOut()
+        AuthenticationRepository(auth).signOut()
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
 
     }

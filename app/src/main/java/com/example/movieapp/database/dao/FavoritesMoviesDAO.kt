@@ -1,27 +1,30 @@
 package com.example.movieapp.database.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.example.movieapp.model.FavoritesMovies
+import com.example.movieapp.model.Movie
 
 @Dao
 interface FavoritesMoviesDAO {
 
-    @Insert
-    fun insertFavoriteMovie(favoritesMovies: FavoritesMovies)
+    @Insert(onConflict = REPLACE)
+    suspend fun insertFavoriteMovieList(favoriteMovie: List<Movie>)
 
-    @Query("SELECT * FROM FavoritesMovies WHERE movie_title LIKE '%' || :title || '%'")
-    fun fetchFilteredFavoritesMovies(title: String): List<FavoritesMovies>
+    @Insert(onConflict = REPLACE)
+    suspend fun insertFavoriteMovie(favoriteMovie: Movie)
 
-    @Query("SELECT * FROM FavoritesMovies")
-    fun fetchAllFavoritesMovies(): List<FavoritesMovies>
+    @Query("SELECT * FROM Movie WHERE userEmail = :email")
+    suspend fun fetchFavoritesMoviesByEmail(email: String): List<Movie>
 
-    @Delete
-    fun deleteOneFavoriteMovie(favoritesMovies: FavoritesMovies)
+    @Query("SELECT * FROM Movie WHERE id = :movieId")
+    suspend fun fetchFavoriteMoviesById(movieId: Long): Movie
 
-    @Delete
-    fun deleteAllFavoritesMovies(allFavoritesMovies: List<FavoritesMovies>)
+    @Query("DELETE FROM Movie WHERE userEmail = :email AND id = :movieID")
+    suspend fun deleteOneFavoriteMovie(email: String, movieID: Long)
+
+    @Query("DELETE FROM Movie WHERE userEmail = :email")
+    suspend fun deleteAllFavoritesMovies(email: String)
 
 }
