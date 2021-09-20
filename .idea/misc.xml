@@ -9,12 +9,14 @@
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_active_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_people_24.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_menu_gallery.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/profile.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.1328125" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23385416666666667" />
