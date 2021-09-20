@@ -5,8 +5,12 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
 import com.example.movieapp.database.AppDatabase
 import com.example.movieapp.database.dao.FavoritesMoviesDAO
-import com.example.movieapp.model.FavoritesMovies
+import com.example.movieapp.model.Movie
 import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.DisposableHandle
+import kotlinx.coroutines.launch
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -36,48 +40,55 @@ class FavoritesMovieResultDAOTest {
     }
 
     @Test
-    fun insertMovie_should_return_true() {
-        val movie = FavoritesMovies(id = 1, movie_title = "Titanic", "UrlImage", "Description")
-        favMoviesDao.insertFavoriteMovie(movie)
+    fun insertMovie_and_fetchOneMovie_should_return_true() {
+        val movie = Movie(pkMovie = 1, userEmail = "teste@gmail.com", id = 1,  title ="Titanic", overview = "Description", poster_path = "/url", vote_average = 7.5F, genres = null)
+        CoroutineScope(Dispatchers.Default).launch {
+            favMoviesDao.insertFavoriteMovie(movie)
 
-        assertThat(favMoviesDao.fetchFilteredFavoritesMovies("Titanic")).contains(movie)
-
+            assertThat(favMoviesDao.fetchFavoriteMoviesById(1)).isEqualTo(movie)
+        }
     }
 
     @Test
     fun fetchAllMovies_should_return_true() {
-        val movie = FavoritesMovies(id = 1, movie_title = "Titanic", "UrlImage", "Description")
-        val movie2 = FavoritesMovies(id = 2, movie_title = "Jurassic Park", "UrlImage", "Description")
-        favMoviesDao.insertFavoriteMovie(movie)
-        favMoviesDao.insertFavoriteMovie(movie2)
+        val movie = Movie(pkMovie = 1, userEmail = "teste@gmail.com", id = 1,  title ="Titanic", overview = "Description", poster_path = "/url", vote_average = 7.5F, genres = null)
+        val movie2 = Movie(pkMovie = 2, userEmail = "teste@gmail.com", id = 2,  title ="Jurassic Park", overview = "Description", poster_path = "/url", vote_average = 8.7F, genres = null)
 
-        assertThat(favMoviesDao.fetchAllFavoritesMovies()).contains(movie2)
+        CoroutineScope(Dispatchers.Default).launch {
+            favMoviesDao.insertFavoriteMovie(movie)
+            favMoviesDao.insertFavoriteMovie(movie2)
 
+            assertThat(favMoviesDao.fetchFavoritesMoviesByEmail("teste@gmail.com")).contains(movie2)
+        }
     }
 
     @Test
     fun deleteOneMovie_should_return_true() {
 
-        val movie = FavoritesMovies(id = 1, movie_title = "Titanic", "UrlImage", "Description")
-        favMoviesDao.insertFavoriteMovie(movie)
-        favMoviesDao.deleteOneFavoriteMovie(movie)
+        val movie = Movie(pkMovie = 1, userEmail = "teste@gmail.com", id = 1,  title ="Titanic", overview = "Description", poster_path = "/url", vote_average = 7.5F, genres = null)
+        CoroutineScope(Dispatchers.Default).launch {
+            favMoviesDao.insertFavoriteMovie(movie)
+            favMoviesDao.deleteOneFavoriteMovie(email = "teste@gmail.com", movieID = 1)
 
-        assertThat(favMoviesDao.fetchAllFavoritesMovies()).doesNotContain(movie)
-
+            assertThat(favMoviesDao.fetchFavoritesMoviesByEmail("teste@gmail.com")).doesNotContain(
+                movie
+            )
+        }
     }
 
     @Test
     fun deleteAllMovies_should_return_true() {
 
-        val movie = FavoritesMovies(id = 1, movie_title = "Titanic", "UrlImage", "Description")
-        val movie2 = FavoritesMovies(id = 2, movie_title = "Jurassic Park", "UrlImage", "Description")
-        favMoviesDao.insertFavoriteMovie(movie)
-        favMoviesDao.insertFavoriteMovie(movie2)
-        favMoviesDao.deleteAllFavoritesMovies(listOf(movie,movie2))
+        val movie = Movie(pkMovie = 1, userEmail = "teste@gmail.com", id = 1,  title ="Titanic", overview = "Description", poster_path = "/url", vote_average = 7.5F, genres = null)
+        val movie2 = Movie(pkMovie = 2, userEmail = "teste@gmail.com", id = 2,  title ="Jurassic Park", overview = "Description", poster_path = "/url", vote_average = 7.5F, genres = null)
+        CoroutineScope(Dispatchers.Default).launch {
+            favMoviesDao.insertFavoriteMovie(movie)
+            favMoviesDao.insertFavoriteMovie(movie2)
+            favMoviesDao.deleteAllFavoritesMovies("teste@gmail.com")
 
-        assertThat(favMoviesDao.fetchAllFavoritesMovies()).doesNotContain(movie)
-        assertThat(favMoviesDao.fetchAllFavoritesMovies()).doesNotContain(movie2)
-
+            assertThat(favMoviesDao.fetchFavoritesMoviesByEmail("teste@gmail.com")).doesNotContain(movie)
+            assertThat(favMoviesDao.fetchFavoritesMoviesByEmail("teste@gmail.com")).doesNotContain(movie2)
+        }
     }
 
 }
