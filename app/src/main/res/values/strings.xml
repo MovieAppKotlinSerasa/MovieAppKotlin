@@ -34,5 +34,10 @@
     <string name="nome_do_filme">Nome do Filme</string>
     <string name="enter_button">Entrar</string>
     <string name="signup_button">Cadastrar</string>
+    <string name="email">Email</string>
+    <string name="confirmar_senha">Confirmar Senha</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="senha">Senha</string>
 
 </resources>

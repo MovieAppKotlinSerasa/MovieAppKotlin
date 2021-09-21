@@ -21,28 +21,33 @@ class AuthenticationRepository @Inject constructor(
         callback: (FirebaseUser?, String?) -> Unit
     ) {
         val taks = auth.signInWithEmailAndPassword(email, password)
-        taks.addOnSuccessListener { authResult ->
 
+        taks.addOnSuccessListener { authResult ->
             if (authResult.user != null) {
                 callback(authResult.user, null)
             }
-
-            taks.addOnFailureListener {
-                callback(null, it.message)
-            }
-
         }
+
+        taks.addOnFailureListener {
+            callback(null, it.message)
+        }
+
     }
 
     fun createAccountWithEmailPassword(
         email: String,
         password: String,
-        callback: (FirebaseUser?) -> Unit
+        callback: (FirebaseUser?, String?) -> Unit
     ) {
+
         val task = auth.createUserWithEmailAndPassword(email, password)
 
         task.addOnSuccessListener {
-            callback(it.user)
+            callback(it.user, null)
+        }
+
+        task.addOnFailureListener {
+            callback(null, it.message)
         }
 
     }

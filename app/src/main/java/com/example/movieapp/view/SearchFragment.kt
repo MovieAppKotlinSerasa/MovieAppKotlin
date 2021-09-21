@@ -89,7 +89,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     }
 
     private fun setupRecyclerView() {
-        binding.searchRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.searchRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.searchRecyclerView.adapter = adapter
 
     }

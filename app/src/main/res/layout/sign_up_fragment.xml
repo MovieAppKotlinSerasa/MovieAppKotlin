@@ -8,108 +8,60 @@
 
 
     <EditText
-        android:id="@+id/editTextEmailNovoCadastro"
-        android:layout_width="0dp"
+        android:id="@+id/editTextSenha"
+        android:layout_width="312dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginEditTextDefault"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/marginEditTextDefault"
+        android:layout_margin="10dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        android:hint="@string/senha"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmailNovoCadastro"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmailNovoCadastro"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailNovoCadastro" />
 
     <EditText
-        android:id="@+id/editTextSenha"
-        android:layout_width="0dp"
+        android:id="@+id/editTextEmailNovoCadastro"
+        android:layout_width="312dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/marginEditTextDefault"
-        android:layout_marginRight="@dimen/marginEditTextDefault"
-        android:layout_marginBottom="@dimen/margemButtonDefault"
+        android:layout_marginTop="56dp"
         android:ems="10"
-        android:hint="Senha"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editTextConfirmarSenha"
+        android:hint="@string/email"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextFields" />
+
+    <EditText
+        android:id="@+id/editTextConfirmarSenha"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="@string/confirmar_senha"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editTextSenha"
+        app:layout_constraintStart_toStartOf="@+id/editTextSenha"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSenha" />
+
 
     <Button
         android:id="@+id/buttonRealizarCadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:text="Cadastrar"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/cadastrar"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonCancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonCancelar" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginEditTextDefault"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/marginEditTextDefault"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextConfirmarSenha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginEditTextDefault"
-        android:layout_marginEnd="@dimen/marginEditTextDefault"
-        android:layout_marginBottom="@dimen/margemButtonDefault"
-        android:ems="10"
-        android:hint="Confirmar Senha"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRealizarCadastro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginEditTextDefault"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/marginEditTextDefault"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Sobrenome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginEditTextDefault"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/marginEditTextDefault"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailNovoCadastro" />
 
     <Button
         android:id="@+id/buttonCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        android:text="Cancelar"
+        android:layout_marginBottom="40dp"
+        android:text="@string/cancelar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonRealizarCadastro"
         app:layout_constraintHorizontal_bias="0.5"
