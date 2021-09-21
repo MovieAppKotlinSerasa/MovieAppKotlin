@@ -1,26 +1,22 @@
 package com.example.movieapp.view
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.HomeActivity
 import com.example.movieapp.R
 import com.example.movieapp.adapter.GenreAdapter
-import com.example.movieapp.adapter.MovieAdapter
 import com.example.movieapp.databinding.MovieFragmentBinding
 import com.example.movieapp.model.Genre
-import com.example.movieapp.model.GenreResult
 import com.example.movieapp.model.Movie
-import com.example.movieapp.model.MovieResult
 import com.example.movieapp.view_model.MovieViewModel
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
-
-import com.google.android.material.navigation.NavigationView
 
 
 @AndroidEntryPoint

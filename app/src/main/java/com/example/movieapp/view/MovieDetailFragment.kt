@@ -1,6 +1,5 @@
 package com.example.movieapp.view
 
-import android.annotation.SuppressLint
 import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
 import android.os.Build
 import android.os.Bundle

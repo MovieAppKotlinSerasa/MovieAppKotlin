@@ -41,9 +41,10 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
         viewModel.error.observe(viewLifecycleOwner, observerError)
 
         binding.buttonRealizarCadastro.setOnClickListener {
-            val inputEmail = binding.editTextEmailNovoCadastro.text
-            val inputPassword = binding.editTextSenha.text
-            val confirmInputPassword = binding.editTextConfirmarSenha.text
+
+            val inputEmail = binding.editTextEmailNovoCadastro.text.toString().removeWhitespaces()
+            val inputPassword = binding.editTextSenha.text.toString().removeWhitespaces()
+            val confirmInputPassword = binding.editTextConfirmarSenha.text.toString().removeWhitespaces()
 
             if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()) {
 
@@ -51,7 +52,7 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
 
                     if (inputPassword == confirmInputPassword) {
 
-                        viewModel.createNewAccount(inputEmail.toString(), inputPassword.toString())
+                        viewModel.createNewAccount(inputEmail, inputPassword)
 
                     } else {
                         showMessage(view, "As senhas não coincidem")
@@ -100,3 +101,5 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
     }
 
 }
+
+fun String.removeWhitespaces() = replace(" ", "")
