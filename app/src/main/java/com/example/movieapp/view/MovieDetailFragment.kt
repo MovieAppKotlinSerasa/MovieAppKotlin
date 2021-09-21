@@ -48,7 +48,10 @@ class MovieDetailFragment() : BottomSheetDialogFragment() {
             .transform(CenterCrop())
             .into(binding.movieDetailImageView)
 
-        binding.movieDetailGenreTextView.text = result.genres?.get(0)?.name
+        result.genres?.let {
+            binding.movieDetailGenreTextView.text = result.genres[0].name
+        }
+
         binding.movieDetailAverageVoteTextView.text = result.vote_average.toString()
         binding.movieDetailTitleTextView.text = result.title
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
