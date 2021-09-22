@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/checkbox.xml" value="0.31574074074074077" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_active_24.xml" value="0.1" />
@@ -45,7 +46,7 @@
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.203125" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.203125" />
         <entry key="app/src/main/res/layout/movie_detail_fragment.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/movie_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/movie_fragment.xml" value="0.5" />
         <entry key="app/src/main/res/layout/nav_header_home.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/offline_fragment.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/search_fragment.xml" value="0.335" />

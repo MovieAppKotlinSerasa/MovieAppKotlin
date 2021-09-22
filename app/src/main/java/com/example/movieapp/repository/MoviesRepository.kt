@@ -14,10 +14,10 @@ class MoviesRepository @Inject constructor(
     private val moviesRepository: MoviesService
 ) {
 
-    suspend fun getAllMoviesFromService(page: Int, genre: Int): MovieResult? {
+    suspend fun getAllMoviesFromService(page: Int, genre: Int, sortBy: String): MovieResult? {
 
         return withContext(Dispatchers.Default) {
-            val response = moviesRepository.getMostPopularMovies(page = page, genre = genre.toString())
+            val response = moviesRepository.getMostPopularMovies(page = page, genre = genre.toString(), sort = sortBy)
             chargeData(response)
         }
 

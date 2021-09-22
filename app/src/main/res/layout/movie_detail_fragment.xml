@@ -46,7 +46,7 @@
         android:layout_marginStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieDetailVideoView"
-        tools:listitem="@layout/item_chip" />
+        tools:listitem="@layout/item_chip"/>
 
     <TextView
         android:id="@+id/movieDetailAverageVoteTextView"

@@ -40,5 +40,6 @@
     <string name="cancelar">Cancelar</string>
     <string name="senha">Senha</string>
     <string name="g_nero">Gênero</string>
+    <string name="welcome_message">Colecione seus filmes favoritos</string>
 
 </resources>

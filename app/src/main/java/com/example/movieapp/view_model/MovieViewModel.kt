@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+
+
 @HiltViewModel
 class MovieViewModel @Inject constructor(
     private val authRepository: AuthenticationRepository,
@@ -40,11 +42,11 @@ class MovieViewModel @Inject constructor(
         }
     }
 
-    suspend fun getMovies(genre: Int) : List<Movie>? = withContext(Dispatchers.Main) {
-        moviesRepository.getAllMoviesFromService(genre = genre, page = 1)?.results
+    suspend fun getMovies(genre: Int, sortBy: String) : List<Movie>? = withContext(Dispatchers.Main) {
+        moviesRepository.getAllMoviesFromService(genre = genre, page = 1, sortBy = sortBy)?.results
     }
 
-    fun getListOfGenres() {
+    fun getListOfGenres(sortBy: String) {
 
         viewModelScope.launch {
             moviesRepository.getListOfGenres()?.let {
@@ -52,10 +54,11 @@ class MovieViewModel @Inject constructor(
                 val hashMapData = hashMapOf<Genre, List<Movie>?>()
 
                 it.genres?.forEach {
-                    val listOfMoviews = getMovies(it.id)
+                    val listOfMoviews = getMovies(it.id, sortBy)
                     hashMapData[it] = listOfMoviews
                 }
                 _listOfGenres.value = hashMapData
+
             }
         }
     }
