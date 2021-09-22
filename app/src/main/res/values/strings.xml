@@ -39,5 +39,6 @@
     <string name="cadastrar">Cadastrar</string>
     <string name="cancelar">Cancelar</string>
     <string name="senha">Senha</string>
+    <string name="g_nero">Gênero</string>
 
 </resources>

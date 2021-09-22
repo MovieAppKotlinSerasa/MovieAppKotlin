@@ -29,11 +29,13 @@
         <entry key="app/src/main/res/layout/activity_settings.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/app_bar_main2.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/chipzinho.xml" value="0.625" />
         <entry key="app/src/main/res/layout/content_main2.xml" value="0.23385416666666667" />
         <entry key="app/src/main/res/layout/favorites_fragment.xml" value="0.1537037037037037" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.55" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_chip.xml" value="0.2390625" />
         <entry key="app/src/main/res/layout/item_favorites_offline.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/item_favoritos.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_genres.xml" value="0.23385416666666667" />

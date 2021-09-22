@@ -33,7 +33,6 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
 
     private fun onClickItem(movie: Movie) {
         MovieDetailFragment.newInstance(movie.id).show(parentFragmentManager, "dialog_movie_detail")
-
     }
 
     private val observeCurrentUser = Observer<FirebaseUser> {
