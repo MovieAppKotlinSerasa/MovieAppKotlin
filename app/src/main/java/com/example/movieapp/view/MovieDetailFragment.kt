@@ -133,7 +133,6 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
             fetchOfflineMovies()
         }
 
-
     }
     private fun fetchOnlineMovies() {
         if (movieId != null) {

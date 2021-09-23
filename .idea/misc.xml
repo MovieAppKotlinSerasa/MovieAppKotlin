@@ -21,6 +21,8 @@
         <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_menu_gallery.xml" value="0.1328125" />
         <entry key="app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/ic_movie_background.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/drawable/ic_movie_foreground.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_themoviedbnobg_background.xml" value="0.30666666666666664" />
         <entry key="app/src/main/res/drawable/profile.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.1328125" />
@@ -39,7 +41,7 @@
         <entry key="app/src/main/res/layout/item_chip.xml" value="0.2390625" />
         <entry key="app/src/main/res/layout/item_favorites_offline.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/item_favoritos.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/item_genres.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/item_genres.xml" value="0.55" />
         <entry key="app/src/main/res/layout/item_movie.xml" value="0.45" />
         <entry key="app/src/main/res/layout/login_activity.xml" value="0.12083333333333333" />
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.25" />
@@ -54,6 +56,7 @@
         <entry key="app/src/main/res/layout/sign_up_fragment.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/menu/bottom_home_navigation.xml" value="0.23958333333333334" />
         <entry key="app/src/main/res/menu/drawer_home_navigation.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
   </component>

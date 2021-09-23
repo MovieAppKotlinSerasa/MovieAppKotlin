@@ -53,6 +53,7 @@ class ItemGenreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(genre: Genre) {
         binding.movieGenreTextView.text = genre.name
+
 //        binding.mostPopularMoviesByGenreRecyclerView.layoutManager = LinearLayoutManager()
     }
 }

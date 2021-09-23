@@ -41,5 +41,6 @@
     <string name="senha">Senha</string>
     <string name="g_nero">Gênero</string>
     <string name="welcome_message">Colecione seus filmes favoritos</string>
+    <string name="ver_mais">Ver mais</string>
 
 </resources>
