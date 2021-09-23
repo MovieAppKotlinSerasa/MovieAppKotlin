@@ -12,6 +12,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.HomeActivity
 import com.example.movieapp.R
 import com.example.movieapp.adapter.SearchAdapter
@@ -19,6 +20,7 @@ import com.example.movieapp.databinding.SearchFragmentBinding
 import com.example.movieapp.model.MovieResult
 import com.example.movieapp.view_model.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.search_fragment) {
@@ -34,6 +36,8 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
     }
 
+    private var genreId : Int? = null
+    private var sortBy: String? = null
     private lateinit var binding: SearchFragmentBinding
     private lateinit var viewModel: SearchViewModel
     private var searchString = ""
@@ -47,25 +51,49 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         adapter.updateMovies(it.results, clearList)
     }
 
+    private val observerItems = Observer<Int> { page ->
+        if (genreId != null && sortBy != null) {
+            viewModel.getFilteredMoviesByGenre(page, genreId!!, sortBy!!)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val genreId = arguments?.getInt("genre_key")
-        val sortBy = arguments?.getString("sortBy_key")
+
+        genreId = arguments?.getInt("genre_key")
+        sortBy = arguments?.getString("sortBy_key")
 
         binding = SearchFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         viewModel.movieResult.observe(viewLifecycleOwner, observeMovies)
+        viewModel.page.observe(viewLifecycleOwner, observerItems)
 
         setupFilter()
         setupEnterKey()
         setupRecyclerView()
 
-        if(genreId != null && !sortBy.isNullOrEmpty()){
-            viewModel.getFilteredMoviesByGenre(page, genreId, sortBy)
+        if(sortBy != null && genreId != null){
+            viewModel.getFilteredMoviesByGenre(page, genreId!!, sortBy!!)
+            callForMoreItems()
         }
 
         (requireActivity() as? HomeActivity)?.setSelectedItemOnBottomNav(1)
+        setEventsForButtons()
 
+    }
+
+    private fun setEventsForButtons(){
+        binding.searchRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    callForMoreItems()
+                }
+            }
+        })
+    }
+
+    fun callForMoreItems(){
+        viewModel.nextPage()
     }
 
     private fun setupFilter() {

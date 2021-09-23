@@ -18,6 +18,9 @@ class SearchViewModel @Inject constructor(
     private val _movies = MutableLiveData<MovieResult>()
     val movieResult : LiveData<MovieResult> = _movies
 
+    private val _page = MutableLiveData<Int>(1)
+    val page : LiveData<Int> = _page
+
     fun getFilteredMovies(page: Int, query: String) {
         viewModelScope.launch {
            _movies.value = repository.getFilteredMovies(page, query)
@@ -28,6 +31,10 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             _movies.value = repository.getAllMoviesFromService(page, genreId, sortBy)
         }
+    }
+
+    fun nextPage(){
+        _page.value = _page.value!! + 1
     }
 
 }
