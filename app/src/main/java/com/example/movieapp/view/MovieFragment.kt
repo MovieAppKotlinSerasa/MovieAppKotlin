@@ -14,6 +14,7 @@ import com.example.movieapp.adapter.GenreAdapter
 import com.example.movieapp.databinding.MovieFragmentBinding
 import com.example.movieapp.model.Genre
 import com.example.movieapp.model.Movie
+import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view_model.MovieViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
@@ -40,8 +41,12 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
     private var checkedItem = 0
     private var sortBy = POPULARITY
 
-    private fun onClickItem(movie: Movie) {
-        MovieDetailFragment.newInstance(movie.id).show(parentFragmentManager, "dialog_movie_detail")
+    private fun onClickItem(movie: Movie?, id: Int?) {
+        if (movie != null){
+            MovieDetailFragment.newInstance(movie.id).show(parentFragmentManager, "dialog_movie_detail")
+        } else if(id != null){
+            (requireActivity() as HomeActivity).replaceView(SearchFragment.newInstance(id, sortBy), R.id.nav_host_fragment_home_container)
+        }
     }
 
     private val observeCurrentUser = Observer<FirebaseUser> {

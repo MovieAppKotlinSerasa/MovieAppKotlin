@@ -23,5 +23,12 @@ class SearchViewModel @Inject constructor(
            _movies.value = repository.getFilteredMovies(page, query)
         }
     }
+
+    fun getFilteredMoviesByGenre(page: Int, genreId: Int, sortBy: String){
+        viewModelScope.launch {
+            _movies.value = repository.getAllMoviesFromService(page, genreId, sortBy)
+        }
+    }
+
 }
 

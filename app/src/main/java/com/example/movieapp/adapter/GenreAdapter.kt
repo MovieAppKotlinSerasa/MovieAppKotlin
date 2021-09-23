@@ -3,14 +3,16 @@ package com.example.movieapp.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.databinding.ItemGenresBinding
 import com.example.movieapp.model.Genre
 import com.example.movieapp.model.Movie
+import kotlin.reflect.KFunction1
 
-class GenreAdapter(private val onClickItem: (Movie) -> Unit) : RecyclerView.Adapter<ItemGenreViewHolder>() {
+class GenreAdapter(private val onClickItem: (Movie?, Int?) -> Unit) : RecyclerView.Adapter<ItemGenreViewHolder>() {
 
     private val listOfGenres = mutableListOf<Genre>()
     lateinit var hashMapOfGenres : HashMap<Genre, List<Movie>?>
@@ -27,11 +29,14 @@ class GenreAdapter(private val onClickItem: (Movie) -> Unit) : RecyclerView.Adap
             holder.itemView.findViewById<RecyclerView>(R.id.mostPopularMoviesByGenreRecyclerView).apply {
                 hashMapOfGenres[genre]?.let { movies ->
                     val adapter = MovieAdapter(movies) {
-                        onClickItem(it)
+                        onClickItem(it, null)
                     }
                     this.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
                     this.adapter = adapter
                 }
+            }
+            holder.itemView.findViewById<CardView>(R.id.cardViewVerMais).setOnClickListener {
+                onClickItem(null, genre.id)
             }
         }
     }

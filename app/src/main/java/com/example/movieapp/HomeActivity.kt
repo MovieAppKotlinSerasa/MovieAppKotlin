@@ -85,7 +85,7 @@ class HomeActivity : AppCompatActivity() {
                 )
 
                 R.id.bottom_nav_search -> replaceView(
-                    SearchFragment.newInstance(),
+                    SearchFragment(),
                     R.id.nav_host_fragment_home_container
                 )
 

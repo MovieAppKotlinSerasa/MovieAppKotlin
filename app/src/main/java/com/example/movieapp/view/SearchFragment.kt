@@ -22,7 +22,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.search_fragment) {
 
     companion object {
-        fun newInstance() = SearchFragment()
+        fun newInstance(genreId: Int, sortBy: String) : SearchFragment {
+            return SearchFragment().apply {
+                val args = Bundle()
+                args.putInt("genre_key", genreId)
+                args.putString("sortBy_key", sortBy)
+                this.arguments = args
+            }
+        }
     }
 
     private lateinit var binding: SearchFragmentBinding
@@ -40,6 +47,8 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val genreId = arguments?.getInt("genre_key")
+        val sortBy = arguments?.getString("sortBy_key")
 
         binding = SearchFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
@@ -48,6 +57,11 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         setupFilter()
         setupEnterKey()
         setupRecyclerView()
+
+        if(genreId != null && !sortBy.isNullOrEmpty()){
+            viewModel.getFilteredMoviesByGenre(page, genreId, sortBy)
+        }
+
     }
 
     private fun setupFilter() {
