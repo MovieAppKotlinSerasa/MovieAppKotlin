@@ -65,6 +65,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
         binding = SearchFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+
         viewModel.movieResult.observe(viewLifecycleOwner, observeMovies)
         viewModel.page.observe(viewLifecycleOwner, observerItems)
 
@@ -74,7 +75,6 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
         if(sortBy != null && genreId != null){
             viewModel.getFilteredMoviesByGenre(page, genreId!!, sortBy!!)
-            callForMoreItems()
         }
 
         (requireActivity() as? HomeActivity)?.setSelectedItemOnBottomNav(1)
@@ -86,14 +86,10 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         binding.searchRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    callForMoreItems()
+                    viewModel.nextPage()
                 }
             }
         })
-    }
-
-    fun callForMoreItems(){
-        viewModel.nextPage()
     }
 
     private fun setupFilter() {
@@ -137,7 +133,6 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     private fun setupRecyclerView() {
         binding.searchRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.searchRecyclerView.adapter = adapter
-
     }
 
 }
