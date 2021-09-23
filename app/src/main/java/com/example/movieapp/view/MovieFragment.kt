@@ -3,6 +3,7 @@ package com.example.movieapp.view
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,6 +17,7 @@ import com.example.movieapp.model.Genre
 import com.example.movieapp.model.Movie
 import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view_model.MovieViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseUser
@@ -46,6 +48,8 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
             MovieDetailFragment.newInstance(movie.id).show(parentFragmentManager, "dialog_movie_detail")
         } else if(id != null){
             (requireActivity() as HomeActivity).replaceView(SearchFragment.newInstance(id, sortBy), R.id.nav_host_fragment_home_container)
+//            (requireActivity() as HomeActivity).findViewById<BottomNavigationView>(R.id.bottomNavigation).selectedItemId =
+//                R.id.bottom_nav_search
         }
     }
 

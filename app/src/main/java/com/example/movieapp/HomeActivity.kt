@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
+import androidx.annotation.IdRes
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
@@ -24,6 +25,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -34,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var notificationHandler: NotificationHandler
 
     @Inject
-    lateinit var auth : FirebaseAuth
+    lateinit var auth: FirebaseAuth
 
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
@@ -97,6 +102,14 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    fun setSelectedItemOnBottomNav(position: Int) {
+        GlobalScope.launch(Dispatchers.Main) {
+            delay(100)
+            binding.bottomNavigation.menu.getItem(position).isChecked = true
+        }
+
     }
 
     private fun startSettingsActivity() {
@@ -180,7 +193,8 @@ class HomeActivity : AppCompatActivity() {
 
     private fun uploadProfilePic(data: Uri?, onComplete: (Boolean) -> Unit) {
         if (data != null) {
-            FirebaseStorage.getInstance().getReference("Users/Profile/ProfilePicture/$uid").putFile(data)
+            FirebaseStorage.getInstance().getReference("Users/Profile/ProfilePicture/$uid")
+                .putFile(data)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         onComplete(true)

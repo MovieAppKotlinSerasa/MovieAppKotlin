@@ -1,5 +1,6 @@
 package com.example.movieapp.view
 
+import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.movieapp.HomeActivity
 import com.example.movieapp.R
 import com.example.movieapp.adapter.SearchAdapter
 import com.example.movieapp.databinding.SearchFragmentBinding
@@ -61,6 +63,8 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         if(genreId != null && !sortBy.isNullOrEmpty()){
             viewModel.getFilteredMoviesByGenre(page, genreId, sortBy)
         }
+
+        (requireActivity() as? HomeActivity)?.setSelectedItemOnBottomNav(1)
 
     }
 
