@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.movieapp.R
 import com.example.movieapp.databinding.SignUpFragmentBinding
+import com.example.movieapp.model.SignUpModel
 import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view_model.SignUpViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -41,30 +42,15 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
         viewModel.error.observe(viewLifecycleOwner, observerError)
 
         binding.buttonRegister.setOnClickListener {
-            val inputEmail = binding.emailEditTextView.text.toString().removeWhitespaces()
-            val inputPassword = binding.passwordEditTextView.text.toString().removeWhitespaces()
-            val confirmInputPassword = binding.passwordEditTextView.text.toString().removeWhitespaces()
 
-            if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()) {
+            val inputEmail = binding.emailEditTextView.text.toString()
+            val inputPassword = binding.passwordEditText.text.toString()
+            val confirmInputPassword = binding.passwordConfirmEditText.text.toString()
 
-                if (inputPassword.length >= 6) {
-
-                    if (inputPassword == confirmInputPassword) {
-
-                        viewModel.createNewAccount(inputEmail, inputPassword)
-
-                    } else {
-                        showMessage(view, "As senhas não coincidem")
-                    }
-
-                } else {
-                    showMessage(view, "A senha deve ter 6 digitios ou mais.")
-                }
-
-            } else {
-                showMessage(view, "Preencha todos os campos")
-            }
-
+            val signUpModel = SignUpModel(inputEmail, inputPassword, confirmInputPassword)
+            signUpModel.checkUser()?.let{ error ->
+                showMessage(view, error)
+            } ?: viewModel.createNewAccount(inputEmail, inputPassword)
         }
 
         binding.buttonCancel.setOnClickListener {
@@ -98,7 +84,4 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
         }
 
     }
-
 }
-
-fun String.removeWhitespaces() = replace(" ", "")

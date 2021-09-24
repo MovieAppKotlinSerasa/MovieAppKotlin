@@ -79,6 +79,7 @@
                     android:id="@+id/editTextEmailUser"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="textEmailAddress"
                     android:hint="@string/login_email" />
 
             </com.google.android.material.textfield.TextInputLayout>

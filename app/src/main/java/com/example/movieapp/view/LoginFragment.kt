@@ -48,8 +48,8 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
 
         binding.enterButton.setOnClickListener {
 
-            val inputEmail = binding.editTextEmailUser.text.toString().removeWhitespaces()
-            val inputPassword = binding.editTextPassword.text.toString().removeWhitespaces()
+            val inputEmail = binding.editTextEmailUser.text.toString()
+            val inputPassword = binding.editTextPassword.text.toString()
 
             if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()) {
 
