@@ -21,7 +21,7 @@
     <string name="menu_signout_title">Deslogar</string>
     <string name="menu_signout">Sair</string>
     <string name="bottom_nav_search">Pesquisa</string>
-    <string name="bottom_nav_home">Principal</string>
+    <string name="bottom_nav_home">Página Inicial</string>
     <string name="bottom_nav_favorites">Favoritos</string>
     <string name="configura_es">Configurações</string>
     <string name="modo_escuro">Modo escuro</string>
@@ -34,5 +34,10 @@
     <string name="nome_do_filme">Nome do Filme</string>
     <string name="enter_button">Entrar</string>
     <string name="signup_button">Cadastrar</string>
+    <string name="hint_choose_email">Escolha o e-mail</string>
+    <string name="button_search_movies">Filtrar filmes</string>
+    <string name="button_edit_emails">Apagar e-mail</string>
+    <string name="text_offline_title">Busque seus filmes favoritos oflline</string>
+    <string name="dialog_choose_email_to_delete">Escolha o e-mail que você deseja deletar</string>
 
 </resources>

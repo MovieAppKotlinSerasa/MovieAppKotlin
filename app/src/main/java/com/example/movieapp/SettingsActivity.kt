@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.movieapp.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
@@ -39,6 +40,13 @@ class SettingsActivity : AppCompatActivity() {
             with (sharedPref.edit()) {
                 putBoolean("saved_Settings_ModoEscuro", isChecked)
                 commit()
+                if(isChecked) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    delegate.applyDayNight()
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    delegate.applyDayNight()
+                }
             }
         }
 

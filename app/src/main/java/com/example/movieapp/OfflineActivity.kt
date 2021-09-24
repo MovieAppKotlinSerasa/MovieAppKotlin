@@ -11,6 +11,6 @@ class OfflineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_offline)
-        replaceView(OfflineFragment.newInstance(), R.id.withoutInternetContainer)
+        replaceView(OfflineFragment.newInstance(), R.id.offlineContainer)
     }
 }

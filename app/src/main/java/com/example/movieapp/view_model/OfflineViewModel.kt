@@ -24,10 +24,10 @@ class OfflineViewModel @Inject constructor(
     private val _users = MutableLiveData<List<User>>()
     val users: LiveData<List<User>> = _users
 
-    fun fetchFavorites(selectedUserEmail: String) {
+    fun fetchFavorites(selectedUserEmail: String, movieTitle: String) {
 
         viewModelScope.launch {
-            _movies.value = offFavRepository.fetchAllFromDatabase(selectedUserEmail)
+            _movies.value = offFavRepository.fetchAllFromDatabase(selectedUserEmail, movieTitle)
         }
     }
 
@@ -35,6 +35,13 @@ class OfflineViewModel @Inject constructor(
 
         viewModelScope.launch {
             _users.value = usersRepository.fetchUsers()
+        }
+    }
+
+    fun deleteLocalUser(user: User) {
+
+        viewModelScope.launch {
+           usersRepository.deleteLocalUser(user)
         }
     }
 

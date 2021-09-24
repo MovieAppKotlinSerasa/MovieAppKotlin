@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.movieapp.databinding.ActivitySplashBinding
 import com.example.movieapp.utils.checkInternet
 import com.google.firebase.auth.FirebaseAuth
@@ -28,6 +29,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val internetConnection = checkInternet(this)
+
+        setPreferenceTheme()
 
         CoroutineScope(Dispatchers.Main).launch {
             delay(4000)
@@ -58,6 +61,18 @@ class SplashActivity : AppCompatActivity() {
             }
         } else {
             startActivity(OfflineActivity())
+        }
+    }
+
+    private fun setPreferenceTheme() {
+        getSharedPreferences("app_preferences", Context.MODE_PRIVATE).apply {
+            if(getBoolean("saved_Settings_ModoEscuro", false)){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                delegate.applyDayNight()
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                delegate.applyDayNight()
+            }
         }
     }
 

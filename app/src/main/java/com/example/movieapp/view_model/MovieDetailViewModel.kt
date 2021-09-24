@@ -43,10 +43,13 @@ class MovieDetailViewModel @Inject constructor(
 
     fun fetchFavoriteMovies() {
         viewModelScope.launch {
-            favoritesRepository.getAllMoviesFromFirebase { movies, error ->
-                if(movies != null) {
-                    _favMovies.value = movies
-                }
+            authRepository.currentUser()?.email?.let {
+                _favMovies.value = offlineRepository.fetchAllFromDatabase(it, "")
+//            favoritesRepository.getAllMoviesFromFirebase { movies, error ->
+//                if(movies != null) {
+//                    _favMovies.value = movies
+//                }
+//            }
             }
         }
     }
@@ -82,7 +85,7 @@ class MovieDetailViewModel @Inject constructor(
         if (!currentUserEmail.isNullOrEmpty()) {
             viewModelScope.launch {
                 val movie = repository.getMovieById(id)
-                val listLocalFav = offlineRepository.fetchAllFromDatabase(currentUserEmail)
+                val listLocalFav = offlineRepository.fetchAllFromDatabase(currentUserEmail, "")
                 if (movie != null) {
                     movie.userEmail = currentUserEmail
                     var movieNotSaved: Boolean = true

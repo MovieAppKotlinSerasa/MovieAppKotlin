@@ -8,8 +8,8 @@ class OfflineFavoritesRepository @Inject constructor(
     private val favMovies: FavoritesMoviesDAO
 ) {
 
-    suspend fun fetchAllFromDatabase(userEmail: String): List<Movie> {
-        return favMovies.fetchFavoritesMoviesByEmail(userEmail)
+    suspend fun fetchAllFromDatabase(userEmail: String, movieTitle: String): List<Movie> {
+        return favMovies.fetchFavoritesMoviesByEmailAndName(userEmail, movieTitle)
     }
 
     suspend fun fetchByEmailAndId(movieId: Long): Movie {

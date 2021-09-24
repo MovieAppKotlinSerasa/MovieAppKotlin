@@ -2,15 +2,16 @@
     <!-- Base application theme. -->
     <style name="Theme.MovieApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/light_cornflower_blue</item>
+        <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/prussian_blue</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/orange</item>
-        <item name="colorSecondaryVariant">@color/honey_yellow</item>
+        <item name="colorSecondary">@color/honey_yellow</item>
+        <item name="colorSecondaryVariant">@color/orange</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:textColorSecondary">@color/honey_yellow</item>
     </style>
 </resources>

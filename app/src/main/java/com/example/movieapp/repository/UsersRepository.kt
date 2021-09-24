@@ -16,4 +16,8 @@ class UsersRepository @Inject constructor(
         return usersDao.fetchAllUsers()
     }
 
+    suspend fun deleteLocalUser(user: User) {
+        usersDao.deleteUser(user)
+    }
+
 }
