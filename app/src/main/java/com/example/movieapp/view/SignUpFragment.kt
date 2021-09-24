@@ -40,10 +40,10 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
         viewModel.user.observe(viewLifecycleOwner, observerNewUser)
         viewModel.error.observe(viewLifecycleOwner, observerError)
 
-        binding.buttonRealizarCadastro.setOnClickListener {
-            val inputEmail = binding.editTextEmailNovoCadastro.text
-            val inputPassword = binding.editTextSenha.text
-            val confirmInputPassword = binding.editTextConfirmarSenha.text
+        binding.buttonRegister.setOnClickListener {
+            val inputEmail = binding.emailEditTextView.text.toString()
+            val inputPassword = binding.passwordEditTextView.text.toString()
+            val confirmInputPassword = binding.passwordEditTextView.text.toString()
 
             if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()) {
 
@@ -51,7 +51,7 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
 
                     if (inputPassword == confirmInputPassword) {
 
-                        viewModel.createNewAccount(inputEmail.toString(), inputPassword.toString())
+                        viewModel.createNewAccount(inputEmail, inputPassword)
 
                     } else {
                         showMessage(view, "As senhas não coincidem")
@@ -67,7 +67,7 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
 
         }
 
-        binding.buttonCancelar.setOnClickListener {
+        binding.buttonCancel.setOnClickListener {
             requireActivity().replaceView(LoginFragment.newInstance(), R.id.container)
         }
 

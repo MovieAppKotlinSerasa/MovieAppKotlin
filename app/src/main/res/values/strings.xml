@@ -36,8 +36,11 @@
     <string name="signup_button">Cadastrar</string>
     <string name="email">Email</string>
     <string name="confirmar_senha">Confirmar Senha</string>
-    <string name="cadastrar">Cadastrar</string>
-    <string name="cancelar">Cancelar</string>
-    <string name="senha">Senha</string>
+    <string name="register"><u>Cadastrar</u></string>
+    <string name="cancel">Cancelar</string>
+    <string name="password">Senha</string>
+    <string name="login"><u>ENTRAR</u></string>
+    <string name="create_register">CRIAR CADASTRO</string>
+    <string name="not_register_yet">Ainda não tem uma conta?</string>
 
 </resources>
