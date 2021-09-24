@@ -42,5 +42,8 @@
     <string name="login"><u>ENTRAR</u></string>
     <string name="create_register">CRIAR CADASTRO</string>
     <string name="not_register_yet">Ainda não tem uma conta?</string>
+    <string name="g_nero">Gênero</string>
+    <string name="welcome_message">Colecione seus filmes favoritos</string>
+    <string name="ver_mais">Ver mais</string>
 
 </resources>

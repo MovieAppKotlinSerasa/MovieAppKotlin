@@ -1,11 +1,8 @@
 package com.example.movieapp.repository
 
-import com.example.movieapp.database.AppDatabase
 import com.example.movieapp.model.Movie
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -108,7 +105,6 @@ class FavoritesRepository @Inject constructor(
     }
 
     suspend fun getMovieById(id: Long): Movie? {
-        println(id)
         return moviesRepository.getMovieById(id)
     }
 

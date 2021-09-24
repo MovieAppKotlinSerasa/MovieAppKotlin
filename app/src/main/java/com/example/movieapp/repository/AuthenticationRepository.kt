@@ -2,18 +2,12 @@ package com.example.movieapp.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import javax.inject.Inject
 
 
 class AuthenticationRepository @Inject constructor(
     private val auth : FirebaseAuth
 ) {
-
-    private val uid = auth.currentUser?.uid
-    private var storageReference: StorageReference =
-        FirebaseStorage.getInstance().getReference("Users/${uid}")
 
     fun signInWithEmailPassword(
         email: String,

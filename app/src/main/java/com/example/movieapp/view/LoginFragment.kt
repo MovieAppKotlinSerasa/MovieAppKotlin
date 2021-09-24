@@ -48,13 +48,13 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
 
         binding.enterButton.setOnClickListener {
 
-            val inputEmail = binding.editTextEmailUser.text
-            val inputPassword = binding.editTextPassword.text
+            val inputEmail = binding.editTextEmailUser.text.toString().removeWhitespaces()
+            val inputPassword = binding.editTextPassword.text.toString().removeWhitespaces()
 
-            if (!inputEmail.isNullOrEmpty() && !inputPassword.isNullOrEmpty()) {
+            if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()) {
 
                 if (inputPassword.length >= 6) {
-                    viewModel.signIn(inputEmail.toString(), inputPassword.toString())
+                    viewModel.signIn(inputEmail, inputPassword)
                 } else {
                     showMessage(view, "A senha deve ter 6 digitios ou mais.")
                 }

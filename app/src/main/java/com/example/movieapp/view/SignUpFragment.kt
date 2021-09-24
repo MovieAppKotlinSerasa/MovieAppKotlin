@@ -41,9 +41,9 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
         viewModel.error.observe(viewLifecycleOwner, observerError)
 
         binding.buttonRegister.setOnClickListener {
-            val inputEmail = binding.emailEditTextView.text.toString()
-            val inputPassword = binding.passwordEditTextView.text.toString()
-            val confirmInputPassword = binding.passwordEditTextView.text.toString()
+            val inputEmail = binding.emailEditTextView.text.toString().removeWhitespaces()
+            val inputPassword = binding.passwordEditTextView.text.toString().removeWhitespaces()
+            val confirmInputPassword = binding.passwordEditTextView.text.toString().removeWhitespaces()
 
             if (inputEmail.isNotEmpty() && inputPassword.isNotEmpty()) {
 
@@ -100,3 +100,5 @@ class SignUpFragment : Fragment(R.layout.sign_up_fragment) {
     }
 
 }
+
+fun String.removeWhitespaces() = replace(" ", "")
