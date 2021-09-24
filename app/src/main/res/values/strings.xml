@@ -39,5 +39,16 @@
     <string name="button_edit_emails">Apagar e-mail</string>
     <string name="text_offline_title">Busque seus filmes favoritos oflline</string>
     <string name="dialog_choose_email_to_delete">Escolha o e-mail que você deseja deletar</string>
+    <string name="email">Email</string>
+    <string name="confirmar_senha">Confirmar Senha</string>
+    <string name="register"><u>Cadastrar</u></string>
+    <string name="cancel">Cancelar</string>
+    <string name="password">Senha</string>
+    <string name="login"><u>ENTRAR</u></string>
+    <string name="create_register">CRIAR CADASTRO</string>
+    <string name="not_register_yet">Ainda não tem uma conta?</string>
+    <string name="g_nero">Gênero</string>
+    <string name="welcome_message">Colecione seus filmes favoritos</string>
+    <string name="ver_mais">Ver mais</string>
 
 </resources>

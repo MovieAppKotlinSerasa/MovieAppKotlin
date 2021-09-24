@@ -1,6 +1,5 @@
 package com.example.movieapp.view
 
-import android.annotation.SuppressLint
 import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
 import android.os.Build
 import android.os.Bundle
@@ -9,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.movieapp.R
+import com.example.movieapp.adapter.GenresMovieDetailAdapter
 import com.example.movieapp.databinding.MovieDetailFragmentBinding
 import com.example.movieapp.model.Movie
 import com.example.movieapp.model.MovieTrailerResult
@@ -23,7 +25,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieDetailFragment() : BottomSheetDialogFragment() {
+class MovieDetailFragment : BottomSheetDialogFragment() {
 
     companion object {
         fun newInstance(id: Long): MovieDetailFragment{
@@ -39,6 +41,7 @@ class MovieDetailFragment() : BottomSheetDialogFragment() {
     private lateinit var binding: MovieDetailFragmentBinding
     private var selectedMovie: Movie? = null
     private var movieId: Long? = 0
+    private lateinit var genreListAdapter: GenresMovieDetailAdapter
 
     private val movieObserver = Observer<Movie> { result ->
 
@@ -50,8 +53,12 @@ class MovieDetailFragment() : BottomSheetDialogFragment() {
             .into(binding.movieDetailImageView)
 
         result.genres?.let {
-            binding.movieDetailGenreTextView.text = result.genres[0].name
+            genreListAdapter = GenresMovieDetailAdapter(result.genres)
+            binding.movieDetailGenreRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.movieDetailGenreRecyclerView.adapter = genreListAdapter
+
         }
+
         binding.movieDetailAverageVoteTextView.text = result.vote_average.toString()
         binding.movieDetailTitleTextView.text = result.title
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -102,7 +109,7 @@ class MovieDetailFragment() : BottomSheetDialogFragment() {
 
         selectedMovie = result
 
-        binding.movieDetailGenreTextView.text = result.genres?.get(0)?.name
+//        binding.movieDetailGenreTextView.text = result.genres?.get(0)?.name
         binding.movieDetailAverageVoteTextView.text = result.vote_average.toString()
         binding.movieDetailTitleTextView.text = result.title
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -135,9 +142,8 @@ class MovieDetailFragment() : BottomSheetDialogFragment() {
             fetchOfflineMovies()
         }
 
-
     }
-    fun fetchOnlineMovies() {
+    private fun fetchOnlineMovies() {
         if (movieId != null) {
             viewModel.getMovieById(movieId!!)
         }
@@ -155,7 +161,7 @@ class MovieDetailFragment() : BottomSheetDialogFragment() {
         }
     }
 
-    fun fetchOfflineMovies() {
+    private fun fetchOfflineMovies() {
         if (movieId != null) {
             viewModel.fetchLocalFavs(movieId!!)
         }

@@ -39,30 +39,23 @@
         app:layout_constraintStart_toStartOf="@+id/movieDetailImageView"
         app:layout_constraintTop_toTopOf="@+id/movieDetailImageView" />
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/movieDetailGenreTextView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_margin="12dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/movieDetailVideoView" />-->
-    <TextView
-        android:id="@+id/movieDetailGenreTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="16dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/movieDetailGenreRecyclerView"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailVideoView" />
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailVideoView"
+        tools:listitem="@layout/item_chip"/>
 
     <TextView
         android:id="@+id/movieDetailAverageVoteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        app:layout_constraintStart_toEndOf="@+id/movieDetailGenreTextView"
-        app:layout_constraintTop_toTopOf="@+id/movieDetailGenreTextView"
-        app:layout_constraintBottom_toBottomOf="@+id/movieDetailGenreTextView"
+        app:layout_constraintStart_toEndOf="@+id/movieDetailGenreRecyclerView"
+        app:layout_constraintTop_toTopOf="@+id/movieDetailGenreRecyclerView"
+        app:layout_constraintBottom_toBottomOf="@+id/movieDetailGenreRecyclerView"
         tools:text="7.84"/>
 
     <ImageView
@@ -71,9 +64,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:src="@drawable/ic_baseline_star_24"
-        app:layout_constraintBottom_toBottomOf="@+id/movieDetailGenreTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/movieDetailGenreRecyclerView"
         app:layout_constraintStart_toEndOf="@+id/movieDetailAverageVoteTextView"
-        app:layout_constraintTop_toTopOf="@+id/movieDetailGenreTextView" />
+        app:layout_constraintTop_toTopOf="@+id/movieDetailGenreRecyclerView" />
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/movieDetailFavoriteCheckbox"
@@ -99,7 +92,7 @@
         android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieDetailGenreTextView"
+        app:layout_constraintTop_toBottomOf="@+id/movieDetailGenreRecyclerView"
         tools:text="Title"/>
 
     <TextView

@@ -49,7 +49,7 @@ class FavoritesViewModel @Inject constructor(
 
     fun getMovies() {
         viewModelScope.launch {
-            favoritesRepository.getAllMoviesFromFirebase { bills, error ->
+            favoritesRepository.getAllMoviesFromFirebase { bills, _ ->
                 _movies.value = bills
             }
         }

@@ -16,9 +16,17 @@ class SignUpViewModel @Inject constructor(
     private val _user = MutableLiveData<FirebaseUser?>()
     var user : LiveData<FirebaseUser?> = _user
 
+    private val _error = MutableLiveData<String>()
+    val error : LiveData<String> = _error
+
     fun createNewAccount(email: String, password: String){
-        authenticationRepository.createAccountWithEmailPassword(email, password){
-            _user.value = it
+        authenticationRepository.createAccountWithEmailPassword(email, password){fireBaseUser, error ->
+           if (fireBaseUser != null) {
+               _user.value = fireBaseUser
+           } else {
+               _error.value = error ?: "Error diferente!"
+           }
+
         }
     }
 

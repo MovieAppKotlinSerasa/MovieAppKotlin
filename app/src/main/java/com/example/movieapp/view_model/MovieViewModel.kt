@@ -4,21 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
 import com.example.movieapp.model.Genre
-import com.example.movieapp.model.GenreResult
 import com.example.movieapp.model.Movie
 import com.example.movieapp.model.MovieResult
-import com.example.movieapp.model.User
 import com.example.movieapp.repository.*
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
 import javax.inject.Inject
-import kotlin.collections.HashMap
+
+
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(
@@ -45,11 +42,11 @@ class MovieViewModel @Inject constructor(
         }
     }
 
-    suspend fun getMovies(genre: Int) : List<Movie>? = withContext(Dispatchers.Main) {
-        moviesRepository.getAllMoviesFromService(genre = genre, page = 1)?.results
+    suspend fun getMovies(genre: Int, sortBy: String) : List<Movie>? = withContext(Dispatchers.Main) {
+        moviesRepository.getAllMoviesFromService(genre = genre, page = 1, sortBy = sortBy)?.results
     }
 
-    fun getListOfGenres() {
+    fun getListOfGenres(sortBy: String) {
 
         viewModelScope.launch {
             moviesRepository.getListOfGenres()?.let {
@@ -57,10 +54,11 @@ class MovieViewModel @Inject constructor(
                 val hashMapData = hashMapOf<Genre, List<Movie>?>()
 
                 it.genres?.forEach {
-                    val listOfMoviews = getMovies(it.id)
+                    val listOfMoviews = getMovies(it.id, sortBy)
                     hashMapData[it] = listOfMoviews
                 }
                 _listOfGenres.value = hashMapData
+
             }
         }
     }
