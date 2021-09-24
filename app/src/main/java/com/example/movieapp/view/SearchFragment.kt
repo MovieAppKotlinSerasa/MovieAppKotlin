@@ -49,11 +49,16 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private val observeMovies = Observer<MovieResult> {
         adapter.updateMovies(it.results, clearList)
+        if(clearList) {
+            clearList = false
+        }
     }
 
     private val observerItems = Observer<Int> { page ->
         if (genreId != null && sortBy != null) {
             viewModel.getFilteredMoviesByGenre(page, genreId!!, sortBy!!)
+        } else if (searchString.isNotEmpty()){
+            viewModel.getFilteredMovies(page, searchString)
         }
     }
 
@@ -86,7 +91,9 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         binding.searchRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    viewModel.nextPage()
+//                    if(genreId != null){
+                        viewModel.nextPage()
+//                    }
                 }
             }
         })
@@ -116,10 +123,11 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         binding.searchEditText.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
 
+                genreId = null
                 clearList = true
                 page = 1
 
-                viewModel.getFilteredMovies(1, searchString)
+                viewModel.getFilteredMovies(page, searchString)
                 val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
                 imm?.hideSoftInputFromWindow(v.windowToken, 0)
                 v.clearFocus()
