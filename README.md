@@ -84,6 +84,7 @@ Nas configurações você pode manter a sessão e mudar para o modo escuro :
 ## Instalação  
 
 Use o [Git](https://git-scm.com/) para clonar o repositório e executar o projeto em seu Android Studio.
+
 Ou faça o download da apk [aqui](outputs/app-debug.apk)
   
 
