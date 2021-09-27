@@ -148,10 +148,7 @@ class HomeActivity : AppCompatActivity() {
             }
             when (it.itemId) {
 
-                R.id.drawer_nav_home -> replaceView(
-                    MovieFragment.newInstance(),
-                    R.id.nav_host_fragment_home_container
-                )
+                R.id.drawer_nav_home -> drawerHomeSetup()
                 R.id.drawer_nav_settings -> startSettingsActivity()
                 R.id.drawer_nav_notifications -> CoroutineScope(Dispatchers.Main).launch { notificationResponse.await() }
                 R.id.drawer_nav_signout -> signOut()
@@ -159,6 +156,11 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    private fun drawerHomeSetup() {
+        replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
+        setSelectedItemOnBottomNav(0)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
