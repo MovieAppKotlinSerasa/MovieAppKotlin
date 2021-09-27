@@ -28,8 +28,8 @@ class OfflineFavoritesRepository @Inject constructor(
         favMovies.deleteOneFavoriteMovie(movieID)
     }
 
-    suspend fun clearFavList(movies: List<Movie>) {
-        favMovies.deleteAllFavoritesMovies(movies)
+    suspend fun clearFavList() {
+        favMovies.deleteAllFavoritesMovies()
     }
 
 }

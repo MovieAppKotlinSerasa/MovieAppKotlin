@@ -16,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
     private val favoritesRepository: FavoritesRepository,
-    private val offlineRepository: OfflineFavoritesRepository
+    private val offlineRepository: OfflineFavoritesRepository,
+    private val offFavRepository: OfflineFavoritesRepository
 ) : ViewModel() {
 
     private val _movies = MutableLiveData<List<Movie>>()
@@ -44,8 +45,24 @@ class FavoritesViewModel @Inject constructor(
             favoritesRepository.getAllMoviesFromFirebase { listOfMovies, _ ->
                 if(listOfMovies != null) {
                     _movies.value = listOfMovies
+                    updateLocalFavList(listOfMovies)
                 }
             }
         }
     }
+
+    private fun updateLocalFavList(movies: List<Movie>) {
+        viewModelScope.launch {
+            offlineRepository.clearFavList()
+            offlineRepository.insertNewFavList(movies)
+        }
+    }
+
+    fun fetchFavorites(movieTitle: String) {
+
+        viewModelScope.launch {
+            _movies.value = offFavRepository.fetchAllFromDatabase(movieTitle)
+        }
+    }
+
 }

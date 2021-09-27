@@ -25,7 +25,7 @@ interface FavoritesMoviesDAO {
     @Query("DELETE FROM Movie WHERE id = :movieID")
     suspend fun deleteOneFavoriteMovie(movieID: Long)
 
-    @Delete
-    suspend fun deleteAllFavoritesMovies(movies: List<Movie>)
+    @Query("DELETE FROM Movie")
+    suspend fun deleteAllFavoritesMovies()
 
 }

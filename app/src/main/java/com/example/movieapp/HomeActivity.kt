@@ -14,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationManagerCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.movieapp.database.dao.FavoritesMoviesDAO
 import com.example.movieapp.databinding.ActivityHomeBinding
 import com.example.movieapp.repository.AuthenticationRepository
+import com.example.movieapp.repository.OfflineFavoritesRepository
 import com.example.movieapp.services.NotificationHandler
 import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view.FavoritesFragment
@@ -38,6 +40,9 @@ class HomeActivity : AppCompatActivity() {
 
     @Inject
     lateinit var auth: FirebaseAuth
+
+    @Inject
+    lateinit var favMoviesDao: FavoritesMoviesDAO
 
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
@@ -177,6 +182,9 @@ class HomeActivity : AppCompatActivity() {
             .clear()
             .apply()
 
+        CoroutineScope(Dispatchers.Default).launch {
+            OfflineFavoritesRepository(favMoviesDao).clearFavList()
+        }
         AuthenticationRepository(auth).signOut()
         startActivity(Intent(this, LoginActivity::class.java))
         finish()

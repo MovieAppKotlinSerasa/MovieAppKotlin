@@ -75,8 +75,7 @@ class MovieViewModel @Inject constructor(
 
     private fun updateLocalFavList(movies: List<Movie>) {
         viewModelScope.launch {
-            val listOfMovies = offlineRepository.fetchAllFromDatabase("")
-            offlineRepository.clearFavList(listOfMovies)
+            offlineRepository.clearFavList()
             offlineRepository.insertNewFavList(movies)
         }
     }

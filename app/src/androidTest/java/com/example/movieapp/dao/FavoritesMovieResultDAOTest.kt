@@ -82,7 +82,7 @@ class FavoritesMovieResultDAOTest {
         CoroutineScope(Dispatchers.Default).launch {
             favMoviesDao.insertFavoriteMovie(movie)
             favMoviesDao.insertFavoriteMovie(movie2)
-            favMoviesDao.deleteAllFavoritesMovies(favMoviesDao.fetchFavoritesMoviesByName(""))
+            favMoviesDao.deleteAllFavoritesMovies()
 
             assertThat(favMoviesDao.fetchFavoritesMoviesByName("")).doesNotContain(movie)
             assertThat(favMoviesDao.fetchFavoritesMoviesByName("")).doesNotContain(movie2)
