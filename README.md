@@ -31,31 +31,39 @@ Para citar mais um exemplo, seria interessante descobrir exatamente qual a predi
 
 
 Após uma pequena animação você é direcionado a tela de login, onde é solicitado e-mail e senha :
-<img style="zoom:50%;" alt="teladelogin" src="https://user-images.githubusercontent.com/49874215/134971387-7e21d993-897c-4bbe-8790-6c6adf52e600.png">
+
+<img width=300 align=center alt="teladelogin" src="https://user-images.githubusercontent.com/49874215/134971387-7e21d993-897c-4bbe-8790-6c6adf52e600.png">
 
 Caso você ainda não tenha cadastro favor se direcionar a tela de cadastro :
-<img style="zoom:50%;" alt="teladecadastro" src="https://user-images.githubusercontent.com/49874215/134970646-d92d2fe1-b3a7-4348-ae0b-d338883d239d.png">
+
+<img  width=300 align=center alt="teladecadastro" src="https://user-images.githubusercontent.com/49874215/134970646-d92d2fe1-b3a7-4348-ae0b-d338883d239d.png">
 
 Após preencher email e confirmar a senha você é direcionado a tela principal,
 nesta tela tem um menu no canto superior esquerdo e um menu na parte inferior :
-<img style="zoom:50%;" alt="telaprincipal" src="https://user-images.githubusercontent.com/49874215/134970845-23c5c014-4441-4a52-a422-43e4026fb222.png">
+
+<img width=300 align=center alt="telaprincipal" src="https://user-images.githubusercontent.com/49874215/134970845-23c5c014-4441-4a52-a422-43e4026fb222.png">
 
 Na parte inferior está a tela de pesquisa onde é possível pesquisar os filmes por nome :
-<img style="zoom:50%;" alt="teladepesquisa" src="https://user-images.githubusercontent.com/49874215/134970932-db2cc019-1505-4dc4-81e3-6e32b8ad30c9.png">
+
+<img width=300 align=center alt="teladepesquisa" src="https://user-images.githubusercontent.com/49874215/134970932-db2cc019-1505-4dc4-81e3-6e32b8ad30c9.png">
 
 Ao clicar em um filme são exibidos os detalhes do mesmo,
-você pode ver os gêneros nos quais o filme se encaixa, sua nota, 
-sinopse e pode favoritá-lo clicando no coração :
-<img style="zoom:50%;" alt="teladedetalhes" src="https://user-images.githubusercontent.com/49874215/134971053-978eb480-7eaa-428f-aed2-a3f73cbcfc48.png">
+você pode ver os gêneros nos quais o filme se encaixa, sua nota, sinopse e pode favoritá-lo clicando no coração :
+
+<img width=300 align=center alt="teladedetalhes" src="https://user-images.githubusercontent.com/49874215/134971053-978eb480-7eaa-428f-aed2-a3f73cbcfc48.png">
 
 Aqui ficam os filmes que foram salvos na coleção :
-<img style="zoom:50%;" alt="teladefavoritos" src="https://user-images.githubusercontent.com/49874215/134971212-923686e0-d3e2-45af-881f-6c219b497f69.png">
 
-No menu superior é exibido e-mail do usuário e avatar caso queira colocar, é apresentada a opção de configuração, notificação, voltar ao menu e sair do app :
-<img style="zoom:50%;" alt="menulateral" src="https://user-images.githubusercontent.com/49874215/134972349-e874fdb4-c374-49a7-8a7a-bd605b693a80.png">
+<img width=300 align=center alt="teladefavoritos" src="https://user-images.githubusercontent.com/49874215/134971212-923686e0-d3e2-45af-881f-6c219b497f69.png">
+
+No menu superior é exibido e-mail do usuário e avatar caso queira colocar,
+também é apresentada a opção de configuração, notificação, voltar ao menu e sair do app :
+
+<img width=300 align=center alt="menulateral" src="https://user-images.githubusercontent.com/49874215/134972349-e874fdb4-c374-49a7-8a7a-bd605b693a80.png">
 
 Nas configurações você pode manter a sessão e mudar para o modo escuro :
-<img style="zoom:50%;" alt="configuracoes" src="https://user-images.githubusercontent.com/49874215/134972592-4f7beb53-cd87-4a03-a035-5008f4b4def2.png">
+
+<img width=300 align=center alt="configuracoes" src="https://user-images.githubusercontent.com/49874215/134972592-4f7beb53-cd87-4a03-a035-5008f4b4def2.png">
 
 
 ## Ferramentas utilizadas  
