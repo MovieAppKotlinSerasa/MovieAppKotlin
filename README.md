@@ -27,6 +27,21 @@ Coleções de filmes favoritos é um recurso que muitos aplicativos têm, mas ai
 Para citar mais um exemplo, seria interessante descobrir exatamente qual a predileção de filmes de seus amigos. Ela ou ele gosta mais de filmes de ação ou romance? Será que da "match"? ;-)  
 
 
+## Instalação  
+
+Use o [Git](https://git-scm.com/) para clonar o repositório e executar o projeto em seu Android Studio.
+
+Ou faça o download da apk [aqui](outputs)
+  
+
+```bash 
+
+git clone https://github.com/viniciusjasinski/MovieApp.git  
+
+```  
+
+
+
 ## Telas  
 
 
@@ -80,19 +95,6 @@ Nas configurações você pode manter a sessão e mudar para o modo escuro :
 - [Postman](https://www.postman.com/)  
 
   
-
-## Instalação  
-
-Use o [Git](https://git-scm.com/) para clonar o repositório e executar o projeto em seu Android Studio.
-
-Ou faça o download da apk [aqui](outputs/app-debug.apk)
-  
-
-```bash 
-
-git clone https://github.com/viniciusjasinski/MovieApp.git  
-
-```  
 
 
 ## Roteiro  
