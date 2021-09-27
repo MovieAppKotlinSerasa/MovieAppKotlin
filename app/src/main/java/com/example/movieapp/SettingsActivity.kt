@@ -23,7 +23,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedPref = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
-        supportActionBar?.setTitle("Configurações")
+        supportActionBar?.title = "Configurações"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         _binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -39,7 +39,7 @@ class SettingsActivity : AppCompatActivity() {
         _binding.switchModoEscuro.setOnCheckedChangeListener { _, isChecked ->
             with (sharedPref.edit()) {
                 putBoolean("saved_Settings_ModoEscuro", isChecked)
-                commit()
+                apply()
                 if(isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     delegate.applyDayNight()
@@ -53,7 +53,7 @@ class SettingsActivity : AppCompatActivity() {
         _binding.switchSessao.setOnCheckedChangeListener { _, isChecked ->
             with (sharedPref.edit()) {
                 putBoolean("saved_Settings_SalvarSessao", isChecked)
-                commit()
+                apply()
             }
         }
 

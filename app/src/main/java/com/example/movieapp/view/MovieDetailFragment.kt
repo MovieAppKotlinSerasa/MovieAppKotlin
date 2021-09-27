@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.example.movieapp.HomeActivity
 import com.example.movieapp.R
 import com.example.movieapp.adapter.GenresMovieDetailAdapter
 import com.example.movieapp.databinding.MovieDetailFragmentBinding
@@ -71,7 +71,7 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
 
         if(!it.results.isNullOrEmpty()) {
             binding.movieDetailImageView.visibility = View.INVISIBLE
-            binding.movieDetailOfflineImageView.visibility = View.INVISIBLE
+            binding.cardViewImageMovieOfflineDetails.visibility = View.INVISIBLE
             binding.movieDetailVideoView.visibility = View.VISIBLE
             binding.movieDetailVideoView.addYouTubePlayerListener(object :
                 AbstractYouTubePlayerListener() {
@@ -82,7 +82,7 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
             })
         } else {
             binding.movieDetailImageView.visibility = View.VISIBLE
-            binding.movieDetailOfflineImageView.visibility = View.INVISIBLE
+            binding.cardViewImageMovieOfflineDetails.visibility = View.INVISIBLE
             binding.movieDetailVideoView.visibility = View.INVISIBLE
         }
     }
@@ -101,7 +101,7 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
     }
 
     private val offlineMovieObserver = Observer<Movie> { result ->
-        binding.movieDetailOfflineImageView.visibility = View.VISIBLE
+        binding.cardViewImageMovieOfflineDetails.visibility = View.VISIBLE
         binding.movieDetailImageView.visibility = View.INVISIBLE
         binding.movieDetailVideoView.visibility = View.INVISIBLE
 
@@ -109,7 +109,6 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
 
         selectedMovie = result
 
-//        binding.movieDetailGenreTextView.text = result.genres?.get(0)?.name
         binding.movieDetailAverageVoteTextView.text = result.vote_average.toString()
         binding.movieDetailTitleTextView.text = result.title
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -136,7 +135,7 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
         viewModel.offlineMovieDetail.observe(viewLifecycleOwner, offlineMovieObserver)
 
         movieId = arguments?.getLong("movie_id")
-        if(checkInternet(requireContext())) {
+        if(requireActivity().checkInternet()) {
             fetchOnlineMovies()
         } else {
             fetchOfflineMovies()
@@ -163,7 +162,7 @@ class MovieDetailFragment : BottomSheetDialogFragment() {
 
     private fun fetchOfflineMovies() {
         if (movieId != null) {
-            viewModel.fetchLocalFavs(movieId!!)
+            viewModel.fetchLocalFav(movieId!!)
         }
     }
 }

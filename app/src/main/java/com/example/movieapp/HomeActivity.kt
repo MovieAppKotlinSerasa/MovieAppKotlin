@@ -7,10 +7,11 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.Window
 import android.widget.ImageView
-import androidx.annotation.IdRes
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationManagerCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.movieapp.databinding.ActivityHomeBinding
@@ -57,7 +58,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         loadUserImageFromFirebase()
         drawNavigationSetup()
         bottomNavigationSetup()
@@ -121,7 +121,7 @@ class HomeActivity : AppCompatActivity() {
     private fun drawNavigationSetup() {
 
         setSupportActionBar(binding.appToolbar)
-        supportActionBar?.title = "Movie App"
+        supportActionBar?.title = ""
 
         drawerLayout = binding.drawerLayout
         navView = binding.navView

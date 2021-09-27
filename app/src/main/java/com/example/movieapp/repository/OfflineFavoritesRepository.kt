@@ -8,11 +8,11 @@ class OfflineFavoritesRepository @Inject constructor(
     private val favMovies: FavoritesMoviesDAO
 ) {
 
-    suspend fun fetchAllFromDatabase(userEmail: String, movieTitle: String): List<Movie> {
-        return favMovies.fetchFavoritesMoviesByEmailAndName(userEmail, movieTitle)
+    suspend fun fetchAllFromDatabase(movieTitle: String): List<Movie> {
+        return favMovies.fetchFavoritesMoviesByEmailAndName(movieTitle)
     }
 
-    suspend fun fetchByEmailAndId(movieId: Long): Movie {
+    suspend fun fetchById(movieId: Long): Movie {
         return favMovies.fetchFavoriteMoviesById(movieId)
     }
 
@@ -24,12 +24,12 @@ class OfflineFavoritesRepository @Inject constructor(
         favMovies.insertFavoriteMovie(movie)
     }
 
-    suspend fun deleteFavMovie(userEmail: String, movieID: Long) {
-        favMovies.deleteOneFavoriteMovie(userEmail, movieID)
+    suspend fun deleteFavMovie(movieID: Long) {
+        favMovies.deleteOneFavoriteMovie(movieID)
     }
 
-    suspend fun clearFavList(userEmail: String) {
-        favMovies.deleteAllFavoritesMovies(userEmail)
+    suspend fun clearFavList(movies: List<Movie>) {
+        favMovies.deleteAllFavoritesMovies(movies)
     }
 
 }

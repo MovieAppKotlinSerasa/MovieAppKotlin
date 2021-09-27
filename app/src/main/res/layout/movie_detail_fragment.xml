@@ -13,6 +13,7 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:showFullScreenButton="false"
         app:autoPlay="false"
         app:showYouTubeButton="true" />
 
@@ -27,17 +28,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/movieDetailOfflineImageView"
-        android:layout_width="108dp"
-        android:layout_height="108dp"
-        android:scaleType="centerCrop"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewImageMovieOfflineDetails"
+        android:layout_width="138dp"
+        android:layout_height="238dp"
+        android:layout_marginTop="12dp"
         android:visibility="invisible"
-        android:src="@drawable/ic_movie_foreground"
-        app:layout_constraintBottom_toBottomOf="@+id/movieDetailVideoView"
-        app:layout_constraintEnd_toEndOf="@+id/movieDetailImageView"
-        app:layout_constraintStart_toStartOf="@+id/movieDetailImageView"
-        app:layout_constraintTop_toTopOf="@+id/movieDetailImageView" />
+        android:backgroundTint="@color/light_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/movieDetailOfflineImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_movie_foreground"
+            android:layout_margin="20dp" />
+
+    </androidx.cardview.widget.CardView>
+<!--    <ImageView-->
+<!--        android:id="@+id/movieDetailOfflineImageView"-->
+<!--        android:layout_width="108dp"-->
+<!--        android:layout_height="108dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        android:visibility="invisible"-->
+<!--        android:src="@drawable/ic_movie_foreground"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/movieDetailVideoView"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/movieDetailImageView"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/movieDetailImageView"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/movieDetailImageView" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/movieDetailGenreRecyclerView"

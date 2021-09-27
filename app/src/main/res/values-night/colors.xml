@@ -13,4 +13,7 @@
 
     <color name="accentItemBottomNav">#FFB703</color>
     <color name="disableItemBottomNav">#D3D3D3</color>
+
+    <color name="accentTitleColor">#8ECAE6</color>
+
 </resources>

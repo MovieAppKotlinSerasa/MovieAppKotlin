@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.HomeActivity
 import com.example.movieapp.R
 import com.example.movieapp.adapter.SearchAdapter
+import com.example.movieapp.adapter.SpacesItemDecoration
 import com.example.movieapp.databinding.SearchFragmentBinding
 import com.example.movieapp.model.MovieResult
 import com.example.movieapp.view_model.SearchViewModel
@@ -49,16 +50,30 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private val observeMovies = Observer<MovieResult> {
         adapter.updateMovies(it.results, clearList)
+        if(it.results.isNullOrEmpty()) {
+            binding.imageViewDoYourSearch.visibility = View.VISIBLE
+            binding.textViewDoYourSearch.visibility = View.VISIBLE
+            binding.searchRecyclerView.visibility = View.INVISIBLE
+        }
         if(clearList) {
             clearList = false
         }
     }
 
     private val observerItems = Observer<Int> { page ->
+
+        binding.imageViewDoYourSearch.visibility = View.INVISIBLE
+        binding.textViewDoYourSearch.visibility = View.INVISIBLE
+        binding.searchRecyclerView.visibility = View.VISIBLE
+
         if (genreId != null && sortBy != null) {
             viewModel.getFilteredMoviesByGenre(page, genreId!!, sortBy!!)
         } else if (searchString.isNotEmpty()){
             viewModel.getFilteredMovies(page, searchString)
+        } else {
+            binding.imageViewDoYourSearch.visibility = View.VISIBLE
+            binding.textViewDoYourSearch.visibility = View.VISIBLE
+            binding.searchRecyclerView.visibility = View.INVISIBLE
         }
     }
 
@@ -78,10 +93,6 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         setupEnterKey()
         setupRecyclerView()
 
-        if(sortBy != null && genreId != null){
-            viewModel.getFilteredMoviesByGenre(page, genreId!!, sortBy!!)
-        }
-
         (requireActivity() as? HomeActivity)?.setSelectedItemOnBottomNav(1)
         setEventsForButtons()
 
@@ -91,9 +102,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         binding.searchRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-//                    if(genreId != null){
                         viewModel.nextPage()
-//                    }
                 }
             }
         })
@@ -127,7 +136,16 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 clearList = true
                 page = 1
 
-                viewModel.getFilteredMovies(page, searchString)
+                if(searchString.isNotEmpty()) {
+                    viewModel.getFilteredMovies(page, searchString)
+                    binding.imageViewDoYourSearch.visibility = View.INVISIBLE
+                    binding.textViewDoYourSearch.visibility = View.INVISIBLE
+                    binding.searchRecyclerView.visibility = View.VISIBLE
+                } else {
+                    binding.imageViewDoYourSearch.visibility = View.VISIBLE
+                    binding.textViewDoYourSearch.visibility = View.VISIBLE
+                    binding.searchRecyclerView.visibility = View.INVISIBLE
+                }
                 val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
                 imm?.hideSoftInputFromWindow(v.windowToken, 0)
                 v.clearFocus()
@@ -139,8 +157,12 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     }
 
     private fun setupRecyclerView() {
+
+        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.normal_padding)
+
         binding.searchRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
         binding.searchRecyclerView.adapter = adapter
+        binding.searchRecyclerView.addItemDecoration(SpacesItemDecoration(spanCount = 3, spacing = spacingInPixels, includeEdge = true))
     }
 
 }

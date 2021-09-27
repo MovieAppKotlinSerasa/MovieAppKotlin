@@ -11,8 +11,6 @@ data class MovieResult(
 @Entity
 data class Movie(
     @PrimaryKey
-    var pkMovie: Long? = 0,
-    var userEmail: String? = null,
     val id: Long,
     val title: String,
     val overview: String,
@@ -30,8 +28,8 @@ data class Genre(
     val name: String
 )
 
-data class GenreResult(
 
+data class GenreResult(
     val genres: List<Genre>?
 )
 

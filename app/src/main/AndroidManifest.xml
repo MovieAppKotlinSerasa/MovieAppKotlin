@@ -15,7 +15,9 @@
         android:theme="@style/Theme.MovieApp">
         <activity
             android:name=".SplashActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.MovieApp.NoActionBar"
+            android:configChanges="uiMode">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +26,8 @@
         </activity>
         <activity
             android:name=".OfflineActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.MovieApp.NoActionBar"/>
         <activity
             android:name=".SettingsActivity"
             android:exported="true" />
@@ -36,7 +39,8 @@
 
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.MovieApp.NoActionBar" >
         </activity>
     </application>
 

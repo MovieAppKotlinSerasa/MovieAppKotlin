@@ -7,8 +7,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewMovie"
-        android:layout_width="140dp"
-        android:layout_height="235dp"
+        android:layout_width="126dp"
+        android:layout_height="223dp"
         android:backgroundTint="@color/dark_gray"
         android:checkable="true"
         android:clickable="true"
@@ -37,9 +37,8 @@
                 android:id="@+id/movieTitleTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="4dp"
                 android:ellipsize="end"
-                android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
                 android:maxLines="1"
                 android:text="@string/movie_title"
@@ -57,7 +56,6 @@
         android:id="@+id/RemoveFavoriteImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:elevation="16dp"
         android:src="@drawable/ic_baseline_remove_circle_24"
         app:layout_constraintEnd_toEndOf="@+id/cardViewMovie"

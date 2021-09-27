@@ -1,14 +1,18 @@
 package com.example.movieapp.utils
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.view.View
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.movieapp.R
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.qualifiers.ActivityContext
 
 fun FragmentActivity.replaceView(fragment: Fragment, @IdRes containerId: Int = R.id.nav_host_fragment_home_container) {
     supportFragmentManager.beginTransaction()
@@ -16,10 +20,14 @@ fun FragmentActivity.replaceView(fragment: Fragment, @IdRes containerId: Int = R
         .commitNow()
 }
 
-@SuppressLint("ObsoleteSdkInt")
-fun checkInternet(context: Context): Boolean {
+fun FragmentActivity.showMessage(view: View, message: String) {
+    Snackbar.make(view, message, Snackbar.LENGTH_LONG).show()
+}
 
-    val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+@SuppressLint("ObsoleteSdkInt")
+fun Activity.checkInternet(): Boolean {
+
+    val connectivityManager = this.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 

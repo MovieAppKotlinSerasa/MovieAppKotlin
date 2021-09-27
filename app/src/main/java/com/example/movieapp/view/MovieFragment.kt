@@ -1,6 +1,7 @@
 package com.example.movieapp.view
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
@@ -61,7 +62,9 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
 
     private val observerListOfGenres = Observer<HashMap<Genre, List<Movie>?>> { genreWithMovies ->
         genreAdapter.update(genreWithMovies)
+
         binding.animationLoading.visibility = View.INVISIBLE
+        binding.animationLoadingDarkMode.visibility = View.INVISIBLE
         binding.moviesRecyclerView.visibility = View.VISIBLE
     }
 
@@ -72,6 +75,11 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
 
         viewModel.currentUser.observe(viewLifecycleOwner, observeCurrentUser)
         viewModel.listOfGenres.observe(viewLifecycleOwner, observerListOfGenres)
+
+        when (requireContext().resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_YES -> {binding.animationLoadingDarkMode.visibility = View.VISIBLE}
+            Configuration.UI_MODE_NIGHT_NO -> {binding.animationLoading.visibility = View.VISIBLE}
+        }
 
         viewModel.fetchCurrentUser()
         viewModel.getListOfGenres(sortBy)
@@ -88,18 +96,21 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
     private fun showFilterDialog(context: Context){
         MaterialAlertDialogBuilder(context)
             .setTitle("Filtro")
-            .setNeutralButton("Cancelar") { dialog, which ->
-                // Respond to neutral button press
+            .setNegativeButton("Cancelar") { dialog, which ->
+                dialog.cancel()
             }
             .setPositiveButton("Ok") { dialog, which ->
                 viewModel.getListOfGenres(sortBy)
                 checkedItem = selectedItem
-                binding.animationLoading.visibility = View.VISIBLE
+                when (context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+                    Configuration.UI_MODE_NIGHT_YES -> {binding.animationLoadingDarkMode.visibility = View.VISIBLE}
+                    Configuration.UI_MODE_NIGHT_NO -> {binding.animationLoading.visibility = View.VISIBLE}
+                }
+//                binding.animationLoading.visibility = View.VISIBLE
                 binding.moviesRecyclerView.visibility = View.INVISIBLE
+                dialog.dismiss()
             }
-            // Single-choice items (initialized with checked item)
             .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
-                // Respond to item chosen
                 selectedItem = which
                 when(which){
                     0 -> sortBy = POPULARITY

@@ -4,7 +4,6 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.filters.SmallTest
 import com.example.movieapp.database.AppDatabase
-import com.example.movieapp.database.dao.UsersDAO
 import com.example.movieapp.model.User
 import com.google.common.truth.Truth
 import kotlinx.coroutines.CoroutineScope

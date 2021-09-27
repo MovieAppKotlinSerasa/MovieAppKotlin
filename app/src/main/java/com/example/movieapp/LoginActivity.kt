@@ -1,7 +1,9 @@
 package com.example.movieapp
 
 import android.os.Bundle
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.movieapp.utils.replaceView
 import com.example.movieapp.view.LoginFragment
 import com.google.firebase.auth.FirebaseAuth

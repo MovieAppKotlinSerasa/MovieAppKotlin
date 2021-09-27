@@ -3,7 +3,6 @@ package com.example.movieapp.di
 import android.content.Context
 import com.example.movieapp.database.AppDatabase
 import com.example.movieapp.database.dao.FavoritesMoviesDAO
-import com.example.movieapp.database.dao.UsersDAO
 import com.example.movieapp.repository.*
 import com.example.movieapp.services.MoviesService
 import com.example.movieapp.services.NotificationHandler
@@ -62,12 +61,6 @@ object HiltModule {
 
     @Provides
     fun provideOfflineRepository(favoritesMoviesDAO: FavoritesMoviesDAO): OfflineFavoritesRepository = OfflineFavoritesRepository(favoritesMoviesDAO)
-
-    @Provides
-    fun provideUsersDao(database: AppDatabase): UsersDAO = database.usersDAO()
-
-    @Provides
-    fun provideUsersRepository(usersDAO: UsersDAO): UsersRepository = UsersRepository(usersDAO)
 
 }
 

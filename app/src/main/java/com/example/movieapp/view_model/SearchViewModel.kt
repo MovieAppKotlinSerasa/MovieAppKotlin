@@ -18,7 +18,7 @@ class SearchViewModel @Inject constructor(
     private val _movies = MutableLiveData<MovieResult>()
     val movieResult : LiveData<MovieResult> = _movies
 
-    private val _page = MutableLiveData<Int>(1)
+    private val _page = MutableLiveData(1)
     val page : LiveData<Int> = _page
 
     fun getFilteredMovies(page: Int, query: String) {

@@ -41,7 +41,7 @@
     <string name="dialog_choose_email_to_delete">Escolha o e-mail que você deseja deletar</string>
     <string name="email">Email</string>
     <string name="confirmar_senha">Confirmar Senha</string>
-    <string name="register"><u>Cadastrar</u></string>
+    <string name="register"><u>CADASTRAR</u></string>
     <string name="cancel">Cancelar</string>
     <string name="password">Senha</string>
     <string name="login"><u>ENTRAR</u></string>
@@ -50,5 +50,8 @@
     <string name="g_nero">Gênero</string>
     <string name="welcome_message">Colecione seus filmes favoritos</string>
     <string name="ver_mais">Ver mais</string>
+    <string name="textview_do_your_search">Pesquise filmes pelo título</string>
+    <string name="keep_session">Salvar sessão ao sair</string>
+    <string name="register_button">Cadastrar</string>
 
 </resources>

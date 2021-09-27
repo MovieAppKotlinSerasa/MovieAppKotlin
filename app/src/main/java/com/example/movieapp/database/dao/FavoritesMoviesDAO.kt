@@ -1,6 +1,7 @@
 package com.example.movieapp.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
@@ -15,16 +16,16 @@ interface FavoritesMoviesDAO {
     @Insert(onConflict = REPLACE)
     suspend fun insertFavoriteMovie(favoriteMovie: Movie)
 
-    @Query("SELECT * FROM Movie WHERE userEmail = :email AND title LIKE '%' || :movieTitle || '%'")
-    suspend fun fetchFavoritesMoviesByEmailAndName(email: String, movieTitle: String): List<Movie>
+    @Query("SELECT * FROM Movie WHERE title LIKE '%' || :movieTitle || '%'")
+    suspend fun fetchFavoritesMoviesByEmailAndName(movieTitle: String): List<Movie>
 
     @Query("SELECT * FROM Movie WHERE id = :movieId")
     suspend fun fetchFavoriteMoviesById(movieId: Long): Movie
 
-    @Query("DELETE FROM Movie WHERE userEmail = :email AND id = :movieID")
-    suspend fun deleteOneFavoriteMovie(email: String, movieID: Long)
+    @Query("DELETE FROM Movie WHERE id = :movieID")
+    suspend fun deleteOneFavoriteMovie(movieID: Long)
 
-    @Query("DELETE FROM Movie WHERE userEmail = :email")
-    suspend fun deleteAllFavoritesMovies(email: String)
+    @Delete
+    suspend fun deleteAllFavoritesMovies(movies: List<Movie>)
 
 }

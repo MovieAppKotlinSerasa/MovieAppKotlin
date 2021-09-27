@@ -15,8 +15,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
-    private val authRepository: AuthenticationRepository,
-    private val repository: MoviesRepository,
     private val favoritesRepository: FavoritesRepository,
     private val offlineRepository: OfflineFavoritesRepository
 ) : ViewModel() {
@@ -36,21 +34,17 @@ class FavoritesViewModel @Inject constructor(
     }
 
     private fun removeLocalFavs(id: Long) {
-        val currentUserEmail = authRepository.currentUser()?.email
-        if (!currentUserEmail.isNullOrEmpty()) {
-            viewModelScope.launch {
-                val movie = repository.getMovieById(id)
-                if (movie != null) {
-                    offlineRepository.deleteFavMovie(currentUserEmail, movie.id)
-                }
-            }
+        viewModelScope.launch {
+            offlineRepository.deleteFavMovie(id)
         }
     }
 
     fun getMovies() {
         viewModelScope.launch {
-            favoritesRepository.getAllMoviesFromFirebase { bills, _ ->
-                _movies.value = bills
+            favoritesRepository.getAllMoviesFromFirebase { listOfMovies, _ ->
+                if(listOfMovies != null) {
+                    _movies.value = listOfMovies
+                }
             }
         }
     }

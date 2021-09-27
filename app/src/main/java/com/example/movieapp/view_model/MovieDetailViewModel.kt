@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
-    private val authRepository: AuthenticationRepository,
     private val repository: MoviesRepository,
     private val favoritesRepository: FavoritesRepository,
     private val offlineRepository: OfflineFavoritesRepository
@@ -43,14 +42,7 @@ class MovieDetailViewModel @Inject constructor(
 
     fun fetchFavoriteMovies() {
         viewModelScope.launch {
-            authRepository.currentUser()?.email?.let {
-                _favMovies.value = offlineRepository.fetchAllFromDatabase(it, "")
-//            favoritesRepository.getAllMoviesFromFirebase { movies, error ->
-//                if(movies != null) {
-//                    _favMovies.value = movies
-//                }
-//            }
-            }
+            _favMovies.value = offlineRepository.fetchAllFromDatabase("")
         }
     }
 
@@ -60,52 +52,41 @@ class MovieDetailViewModel @Inject constructor(
     }
 
     fun removeFavorite(id: Long) {
-            removeLocalFavs(id)
-            viewModelScope.launch {
-                favoritesRepository.removeFavorite(id) {
-                }
+        removeLocalFav(id)
+        viewModelScope.launch {
+            favoritesRepository.removeFavorite(id) {
             }
+        }
     }
 
-    private fun removeLocalFavs(id: Long) {
-        val currentUserEmail = authRepository.currentUser()?.email
-        if (!currentUserEmail.isNullOrEmpty()) {
-            viewModelScope.launch {
-                val movie = repository.getMovieById(id)
-                if (movie != null) {
-                    offlineRepository.deleteFavMovie(currentUserEmail, movie.id)
-                    println()
-                }
+    private fun removeLocalFav(id: Long) {
+        viewModelScope.launch {
+            val movie = repository.getMovieById(id)
+            if (movie != null) {
+                offlineRepository.deleteFavMovie(movie.id)
             }
         }
     }
 
     private fun addLocalFavs(id: Long) {
-        val currentUserEmail = authRepository.currentUser()?.email
-        if (!currentUserEmail.isNullOrEmpty()) {
-            viewModelScope.launch {
-                val movie = repository.getMovieById(id)
-                val listLocalFav = offlineRepository.fetchAllFromDatabase(currentUserEmail, "")
-                if (movie != null) {
-                    movie.userEmail = currentUserEmail
-                    var movieNotSaved: Boolean = true
-                    listLocalFav.forEach {
-                        if (it.userEmail == currentUserEmail && it.id == movie.id) {
-                            movieNotSaved = false
-                        }
-                    }
-                    if (movieNotSaved) {
-                        offlineRepository.insertNewFavMovie(movie)
-                        println()
-                    }
+        viewModelScope.launch {
+            val listLocalFav = offlineRepository.fetchAllFromDatabase("")
+            var movieNotSaved = true
+            listLocalFav.forEach { movie ->
+                if (movie.id == id) {
+                    movieNotSaved = false
                 }
+            }
+            if (movieNotSaved) {
+                val movie = repository.getMovieById(id)
+                movie?.let { offlineRepository.insertNewFavMovie(movie) }
             }
         }
     }
 
-    fun fetchLocalFavs(movieId: Long) {
+    fun fetchLocalFav(movieId: Long) {
         viewModelScope.launch {
-            _offlineMovieDetail.value = offlineRepository.fetchByEmailAndId(movieId)
+            _offlineMovieDetail.value = offlineRepository.fetchById(movieId)
         }
     }
 

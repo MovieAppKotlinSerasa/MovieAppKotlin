@@ -10,8 +10,8 @@ import com.example.movieapp.HomeActivity
 import com.example.movieapp.R
 import com.example.movieapp.databinding.LoginFragmentBinding
 import com.example.movieapp.utils.replaceView
+import com.example.movieapp.utils.showMessage
 import com.example.movieapp.view_model.LoginViewModel
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,7 +34,7 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
     }
 
     private val observerError = Observer<String> {
-        Snackbar.make(requireView(), replaceErrorMessage(it), Snackbar.LENGTH_LONG).show()
+        requireActivity().showMessage(requireView(), replaceErrorMessage(it))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,11 +56,11 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
                 if (inputPassword.length >= 6) {
                     viewModel.signIn(inputEmail, inputPassword)
                 } else {
-                    showMessage(view, "A senha deve ter 6 digitios ou mais.")
+                    requireActivity().showMessage(view, "A senha deve ter 6 digitios ou mais.")
                 }
 
             } else {
-                showMessage(view, "Preencha todos os campos")
+                requireActivity().showMessage(view, "Preencha todos os campos")
             }
 
         }
@@ -71,27 +71,24 @@ class LoginFragment : Fragment(R.layout.login_fragment) {
 
     }
 
-    private fun showMessage(view: View, message: String) {
-        Snackbar.make(
-            view, message,
-            Snackbar.LENGTH_LONG
-        ).show()
-    }
-
     private fun replaceErrorMessage(message: String): String {
-        println(message)
-
-        if (message.contains("We have blocked all requests from this device due to unusual activity.")) {
-            return "O acesso a esta conta foi temporariamente desativado. Tente novamente em 10 minutos."
-        }
 
         return when (message) {
+
+            "We have blocked all requests from this device due to unusual activity." ->
+                "O acesso a esta conta foi temporariamente desativado. Tente novamente em 10 minutos."
 
             "The password is invalid or the user does not have a password." ->
                 "E-mail ou senha inválida"
 
             "The email address is badly formatted." ->
                 "O endereço de e-mail informado é inválido"
+
+            "A network error (such as timeout, interrupted connection or unreachable host) has occurred." ->
+                "Sem conexão de internet"
+
+            "There is no user record corresponding to this identifier. The user may have been deleted." ->
+                "Não foi encontrado nenhum usuário registrado com este e-mail."
 
             else -> {
                 message
