@@ -25,10 +25,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 
@@ -146,6 +143,9 @@ class HomeActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
 
+            val notificationResponse = CoroutineScope(Dispatchers.Main).async {
+                showNotification()
+            }
             when (it.itemId) {
 
                 R.id.drawer_nav_home -> replaceView(
@@ -153,7 +153,7 @@ class HomeActivity : AppCompatActivity() {
                     R.id.nav_host_fragment_home_container
                 )
                 R.id.drawer_nav_settings -> startSettingsActivity()
-                R.id.drawer_nav_notifications -> showNotification()
+                R.id.drawer_nav_notifications -> CoroutineScope(Dispatchers.Main).launch { notificationResponse.await() }
                 R.id.drawer_nav_signout -> signOut()
 
             }
@@ -181,10 +181,11 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun showNotification() {
+    suspend fun showNotification() {
+        delay(10000)
         notificationHandler.createNotification(
             "Notificação",
-            "Estamos sentindo sua falta! Venha ver as novidades!"
+            "Já adicionou todos os seus filmes na sua coleção?"
         ).run {
             val notificationManager = NotificationManagerCompat.from(applicationContext)
             notificationManager.notify(1, this)
