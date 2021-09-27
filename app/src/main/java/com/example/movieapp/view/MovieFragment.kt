@@ -106,7 +106,6 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
                     Configuration.UI_MODE_NIGHT_YES -> {binding.animationLoadingDarkMode.visibility = View.VISIBLE}
                     Configuration.UI_MODE_NIGHT_NO -> {binding.animationLoading.visibility = View.VISIBLE}
                 }
-//                binding.animationLoading.visibility = View.VISIBLE
                 binding.moviesRecyclerView.visibility = View.INVISIBLE
                 dialog.dismiss()
             }

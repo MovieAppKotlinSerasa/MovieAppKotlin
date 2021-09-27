@@ -63,7 +63,7 @@ class AuthenticationRepositoryTest {
 
         Mockito.`when`(firebaseAuth.signInWithEmailAndPassword(email, password))
             .thenReturn(task)
-        Mockito.`when`(task.addOnSuccessListener {  }(email, password))
+//        Mockito.`when`(task.addOnSuccessListener {  }(email, password))
             .thenReturn(task)
 
         Mockito.`when`(task.result).thenReturn(result)
