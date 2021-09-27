@@ -9,7 +9,7 @@ class OfflineFavoritesRepository @Inject constructor(
 ) {
 
     suspend fun fetchAllFromDatabase(movieTitle: String): List<Movie> {
-        return favMovies.fetchFavoritesMoviesByEmailAndName(movieTitle)
+        return favMovies.fetchFavoritesMoviesByName(movieTitle)
     }
 
     suspend fun fetchById(movieId: Long): Movie {

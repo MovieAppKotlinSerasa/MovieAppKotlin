@@ -16,6 +16,8 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         app:boxStrokeWidth="1dp"
+        app:boxStrokeColor="@color/disableItemBottomNav"
+        app:hintTextColor="@color/disableItemBottomNav"
         app:boxStrokeWidthFocused="1dp"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"

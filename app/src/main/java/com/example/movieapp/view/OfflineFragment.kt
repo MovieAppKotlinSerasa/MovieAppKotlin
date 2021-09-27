@@ -16,7 +16,6 @@ import com.example.movieapp.adapter.FavoritesAdapter
 import com.example.movieapp.adapter.SpacesItemDecoration
 import com.example.movieapp.databinding.OfflineFragmentBinding
 import com.example.movieapp.model.Movie
-import com.example.movieapp.model.User
 import com.example.movieapp.view_model.OfflineViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,6 +38,13 @@ class OfflineFragment : Fragment(R.layout.offline_fragment) {
 
     private val observerMovies = Observer<List<Movie>> {
         adapter.updateMovies(it)
+        if(it.isEmpty()) {
+            binding.imageViewDoYourSearch.visibility = View.VISIBLE
+            binding.textViewDoYourSearch.visibility = View.VISIBLE
+        } else {
+            binding.imageViewDoYourSearch.visibility = View.INVISIBLE
+            binding.textViewDoYourSearch.visibility = View.INVISIBLE
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,6 +65,16 @@ class OfflineFragment : Fragment(R.layout.offline_fragment) {
     }
 
     private fun setupButtonsEvents() {
+
+        binding.searchTextLayout.setEndIconOnClickListener{
+
+            viewModel.fetchFavorites(searchTitle)
+
+            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(binding.searchEditText.windowToken, 0)
+            binding.searchEditText.clearFocus()
+            binding.searchEditText.isCursorVisible = false
+        }
 
         binding.searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(stringToFilter: CharSequence?, p1: Int, count: Int, p3: Int) {}

@@ -43,6 +43,8 @@
 
     <style name="Theme.MovieApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/disableItemBottomNav</item>
+    </style>
 
 </resources>

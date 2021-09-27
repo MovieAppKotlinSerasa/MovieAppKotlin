@@ -16,4 +16,6 @@
 
     <color name="accentTitleColor">#8ECAE6</color>
 
+    <color name="mtrl_textinput_default_box_stroke_color">#D3D3D3</color>
+
 </resources>

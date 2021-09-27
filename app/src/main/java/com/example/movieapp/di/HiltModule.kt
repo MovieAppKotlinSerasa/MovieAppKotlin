@@ -46,7 +46,7 @@ object HiltModule {
         MoviesRepository(moviesService)
 
     @Provides
-    fun provideFavoriteRepository(moviesRepository : MoviesRepository, database: FirebaseFirestore): FavoritesRepository = FavoritesRepository(moviesRepository, database)
+    fun provideFavoriteRepository(moviesRepository : MoviesRepository, database: FirebaseFirestore, firebaseAuth: FirebaseAuth): FavoritesRepository = FavoritesRepository(moviesRepository, database, firebaseAuth)
 
     @Provides
     fun provideNotificationHandler(@ApplicationContext context: Context): NotificationHandler =

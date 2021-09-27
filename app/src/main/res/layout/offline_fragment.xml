@@ -27,6 +27,8 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         app:boxStrokeWidth="1dp"
+        app:boxStrokeColor="@color/disableItemBottomNav"
+        app:hintTextColor="@color/disableItemBottomNav"
         app:boxStrokeWidthFocused="1dp"
         app:boxCornerRadiusTopStart="12dp"
         app:boxCornerRadiusTopEnd="12dp"
@@ -55,5 +57,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchTextLayout" />
+    <ImageView
+        android:id="@+id/imageViewDoYourSearch"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="invisible"
+        android:src="@drawable/ic_lupa_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewDoYourSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_marginTop="12dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewDoYourSearch"
+        android:text="@string/textview_do_your_search"
+        tools:text="Pesquise seus filmes pelo título" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

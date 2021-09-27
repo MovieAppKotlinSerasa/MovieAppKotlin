@@ -50,7 +50,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private val observeMovies = Observer<MovieResult> {
         adapter.updateMovies(it.results, clearList)
-        if(it.results.isNullOrEmpty()) {
+        if(it.results.isNullOrEmpty() && it.page == 1) {
             binding.imageViewDoYourSearch.visibility = View.VISIBLE
             binding.textViewDoYourSearch.visibility = View.VISIBLE
             binding.searchRecyclerView.visibility = View.INVISIBLE
@@ -106,6 +106,27 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 }
             }
         })
+        binding.searchTextLayout.setEndIconOnClickListener{
+
+            genreId = null
+            clearList = true
+            page = 1
+
+            if(searchString.isNotEmpty()) {
+                viewModel.getFilteredMovies(page, searchString)
+                binding.imageViewDoYourSearch.visibility = View.INVISIBLE
+                binding.textViewDoYourSearch.visibility = View.INVISIBLE
+                binding.searchRecyclerView.visibility = View.VISIBLE
+            } else {
+                binding.imageViewDoYourSearch.visibility = View.VISIBLE
+                binding.textViewDoYourSearch.visibility = View.VISIBLE
+                binding.searchRecyclerView.visibility = View.INVISIBLE
+            }
+            val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(binding.searchEditText.windowToken, 0)
+            binding.searchEditText.clearFocus()
+            binding.searchEditText.isCursorVisible = false
+        }
     }
 
     private fun setupFilter() {

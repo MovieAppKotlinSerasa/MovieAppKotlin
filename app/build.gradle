@@ -97,5 +97,12 @@ dependencies {
     //////////////////// Youtube /////////////////////////
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
+    //////////////////// Mockito Tests /////////////////////////
+
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'com.squareup.retrofit2:retrofit-mock:2.9.0'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation("org.mockito:mockito-inline:3.11.1")
 
 }

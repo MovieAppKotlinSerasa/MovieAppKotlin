@@ -11,13 +11,12 @@ import javax.inject.Inject
 
 class FavoritesRepository @Inject constructor(
     private val moviesRepository: MoviesRepository,
-    private val dataBase: FirebaseFirestore
+    private val dataBase: FirebaseFirestore,
+    private val firebaseAuth: FirebaseAuth
 ) {
 
-//    private val dataBase = Firebase.firestore
-
     fun removeFavorite(id: Long, onComplete: (Boolean) -> Unit) {
-        FirebaseAuth.getInstance().currentUser?.let { user ->
+        firebaseAuth.currentUser?.let { user ->
             dataBase
                 .collection("favoritos")
                 .document(user.uid)
@@ -47,7 +46,7 @@ class FavoritesRepository @Inject constructor(
 
 
     fun addFavorite(id: Long) {
-        FirebaseAuth.getInstance().currentUser?.let { user ->
+        firebaseAuth.currentUser?.let { user ->
             dataBase
                 .collection("favoritos")
                 .document(user.uid)
@@ -72,7 +71,7 @@ class FavoritesRepository @Inject constructor(
     }
 
     fun getAllMoviesFromFirebase(callback: (List<Movie>?, String?) -> Unit) {
-        FirebaseAuth.getInstance().currentUser?.let { user ->
+        firebaseAuth.currentUser?.let { user ->
             dataBase
                 .collection("favoritos")
                 .document(user.uid)

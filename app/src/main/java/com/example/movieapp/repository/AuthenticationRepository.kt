@@ -14,15 +14,15 @@ class AuthenticationRepository @Inject constructor(
         password: String,
         callback: (FirebaseUser?, String?) -> Unit
     ) {
-        val taks = auth.signInWithEmailAndPassword(email, password)
+        val tasks = auth.signInWithEmailAndPassword(email, password)
 
-        taks.addOnSuccessListener { authResult ->
+        tasks.addOnSuccessListener { authResult ->
             if (authResult.user != null) {
                 callback(authResult.user, null)
             }
         }
 
-        taks.addOnFailureListener {
+        tasks.addOnFailureListener {
             callback(null, it.message)
         }
 

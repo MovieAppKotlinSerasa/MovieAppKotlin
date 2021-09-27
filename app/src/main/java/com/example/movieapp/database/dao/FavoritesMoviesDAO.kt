@@ -17,7 +17,7 @@ interface FavoritesMoviesDAO {
     suspend fun insertFavoriteMovie(favoriteMovie: Movie)
 
     @Query("SELECT * FROM Movie WHERE title LIKE '%' || :movieTitle || '%'")
-    suspend fun fetchFavoritesMoviesByEmailAndName(movieTitle: String): List<Movie>
+    suspend fun fetchFavoritesMoviesByName(movieTitle: String): List<Movie>
 
     @Query("SELECT * FROM Movie WHERE id = :movieId")
     suspend fun fetchFavoriteMoviesById(movieId: Long): Movie
