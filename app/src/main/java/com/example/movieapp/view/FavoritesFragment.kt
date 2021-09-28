@@ -20,6 +20,8 @@ import com.example.movieapp.model.Movie
 import com.example.movieapp.view_model.FavoritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.movieapp.adapter.SpacesItemDecoration
+import com.example.movieapp.utils.checkInternet
+import com.example.movieapp.utils.showMessage
 
 
 @AndroidEntryPoint
@@ -36,7 +38,12 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
 
     private val adapter = FavoritesAdapter(false) { descriptionClick, removeClick ->
         if(descriptionClick != null) {
-            MovieDetailFragment.newInstance(descriptionClick.id).show(parentFragmentManager, "dialog_movie_detail")
+            if(requireActivity().checkInternet()) {
+                MovieDetailFragment.newInstance(descriptionClick.id)
+                    .show(parentFragmentManager, "dialog_movie_detail")
+            } else {
+                requireActivity().showMessage(requireView(), "Sem conexão com a internet")
+            }
         }
         if(removeClick != null) {
             viewModel.removeMovie(removeClick.id)

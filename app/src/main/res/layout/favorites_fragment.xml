@@ -69,6 +69,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchEditText"
+            android:textCursorDrawable="@null"
+            android:textColor="@color/disableItemBottomNav"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/type_to_search_for_a_movie" />

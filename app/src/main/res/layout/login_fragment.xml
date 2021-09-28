@@ -98,6 +98,8 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editTextEmailUser"
+                                android:textCursorDrawable="@null"
+                                android:textColor="@color/disableItemBottomNav"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="@string/login_email"
@@ -127,6 +129,8 @@
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editTextPassword"
+                                android:textCursorDrawable="@null"
+                                android:textColor="@color/disableItemBottomNav"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="@string/login_password"

@@ -19,6 +19,8 @@ import com.example.movieapp.adapter.SearchAdapter
 import com.example.movieapp.adapter.SpacesItemDecoration
 import com.example.movieapp.databinding.SearchFragmentBinding
 import com.example.movieapp.model.MovieResult
+import com.example.movieapp.utils.checkInternet
+import com.example.movieapp.utils.showMessage
 import com.example.movieapp.view_model.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -45,7 +47,12 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     private var clearList = false
     private var page = 1
     private val adapter = SearchAdapter{
-        MovieDetailFragment.newInstance(it.id).show(parentFragmentManager, "dialog_movie_detail")
+        if(requireActivity().checkInternet()) {
+            MovieDetailFragment.newInstance(it.id)
+                .show(parentFragmentManager, "dialog_movie_detail")
+        } else {
+            requireActivity().showMessage(requireView(), "Sem conexão com a internet")
+        }
     }
 
     private val observeMovies = Observer<MovieResult> {
@@ -61,19 +68,22 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
     }
 
     private val observerItems = Observer<Int> { page ->
+        if(requireActivity().checkInternet()) {
+            binding.imageViewDoYourSearch.visibility = View.INVISIBLE
+            binding.textViewDoYourSearch.visibility = View.INVISIBLE
+            binding.searchRecyclerView.visibility = View.VISIBLE
 
-        binding.imageViewDoYourSearch.visibility = View.INVISIBLE
-        binding.textViewDoYourSearch.visibility = View.INVISIBLE
-        binding.searchRecyclerView.visibility = View.VISIBLE
-
-        if (genreId != null && sortBy != null) {
-            viewModel.getFilteredMoviesByGenre(page, genreId!!, sortBy!!)
-        } else if (searchString.isNotEmpty()){
-            viewModel.getFilteredMovies(page, searchString)
-        } else {
-            binding.imageViewDoYourSearch.visibility = View.VISIBLE
-            binding.textViewDoYourSearch.visibility = View.VISIBLE
-            binding.searchRecyclerView.visibility = View.INVISIBLE
+            if (genreId != null && sortBy != null) {
+                viewModel.getFilteredMoviesByGenre(page, genreId!!, sortBy!!)
+            } else if (searchString.isNotEmpty()) {
+                viewModel.getFilteredMovies(page, searchString)
+            } else {
+                binding.imageViewDoYourSearch.visibility = View.VISIBLE
+                binding.textViewDoYourSearch.visibility = View.VISIBLE
+                binding.searchRecyclerView.visibility = View.INVISIBLE
+            }
+        }else {
+            requireActivity().showMessage(requireView(), "Sem conexão com a internet")
         }
     }
 
@@ -113,7 +123,11 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
             page = 1
 
             if(searchString.isNotEmpty()) {
-                viewModel.getFilteredMovies(page, searchString)
+                if(requireActivity().checkInternet()) {
+                    viewModel.getFilteredMovies(page, searchString)
+                } else {
+                    requireActivity().showMessage(requireView(), "Sem conexão com a internet")
+                }
                 binding.imageViewDoYourSearch.visibility = View.INVISIBLE
                 binding.textViewDoYourSearch.visibility = View.INVISIBLE
                 binding.searchRecyclerView.visibility = View.VISIBLE
@@ -158,7 +172,11 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
                 page = 1
 
                 if(searchString.isNotEmpty()) {
-                    viewModel.getFilteredMovies(page, searchString)
+                    if(requireActivity().checkInternet()) {
+                        viewModel.getFilteredMovies(page, searchString)
+                    } else {
+                        requireActivity().showMessage(requireView(), "Sem conexão com a internet")
+                    }
                     binding.imageViewDoYourSearch.visibility = View.INVISIBLE
                     binding.textViewDoYourSearch.visibility = View.INVISIBLE
                     binding.searchRecyclerView.visibility = View.VISIBLE

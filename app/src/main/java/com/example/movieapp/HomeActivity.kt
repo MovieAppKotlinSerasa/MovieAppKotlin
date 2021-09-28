@@ -19,7 +19,9 @@ import com.example.movieapp.databinding.ActivityHomeBinding
 import com.example.movieapp.repository.AuthenticationRepository
 import com.example.movieapp.repository.OfflineFavoritesRepository
 import com.example.movieapp.services.NotificationHandler
+import com.example.movieapp.utils.checkInternet
 import com.example.movieapp.utils.replaceView
+import com.example.movieapp.utils.showMessage
 import com.example.movieapp.view.FavoritesFragment
 import com.example.movieapp.view.MovieFragment
 import com.example.movieapp.view.SearchFragment
@@ -86,20 +88,23 @@ class HomeActivity : AppCompatActivity() {
 
             when (it.itemId) {
 
-                R.id.bottom_nav_home -> replaceView(
-                    MovieFragment.newInstance(),
-                    R.id.nav_host_fragment_home_container
-                )
+                R.id.bottom_nav_home -> if(checkInternet()) {
+                    replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
+                } else {
+                showMessage(binding.root, "Sem conexão com a internet")
+                }
 
-                R.id.bottom_nav_search -> replaceView(
-                    SearchFragment(),
-                    R.id.nav_host_fragment_home_container
-                )
+                R.id.bottom_nav_search -> if(checkInternet()) {
+                    replaceView(SearchFragment(), R.id.nav_host_fragment_home_container)
+                } else {
+                    showMessage(binding.root, "Sem conexão com a internet")
+                }
 
-                R.id.bottom_nav_favorites -> replaceView(
-                    FavoritesFragment.newInstance(),
-                    R.id.nav_host_fragment_home_container
-                )
+                R.id.bottom_nav_favorites -> if(checkInternet()) {
+                    replaceView(FavoritesFragment.newInstance(), R.id.nav_host_fragment_home_container)
+                } else {
+                    showMessage(binding.root, "Sem conexão com a internet")
+                }
 
             }
             true
@@ -154,7 +159,10 @@ class HomeActivity : AppCompatActivity() {
             when (it.itemId) {
 
                 R.id.drawer_nav_home -> drawerHomeSetup()
-                R.id.drawer_nav_settings -> startSettingsActivity()
+                R.id.drawer_nav_settings -> if(checkInternet()){
+                    startSettingsActivity()
+                } else {
+                    showMessage(binding.root, "Sem conexão com a internet") }
                 R.id.drawer_nav_notifications -> CoroutineScope(Dispatchers.Main).launch { notificationResponse.await() }
                 R.id.drawer_nav_signout -> signOut()
 
@@ -164,8 +172,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun drawerHomeSetup() {
-        replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
-        setSelectedItemOnBottomNav(0)
+        if(checkInternet()) {
+            replaceView(MovieFragment.newInstance(), R.id.nav_host_fragment_home_container)
+            setSelectedItemOnBottomNav(0)
+        } else {
+            showMessage(binding.root, "Sem conexão com a internet")
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

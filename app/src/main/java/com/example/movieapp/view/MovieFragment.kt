@@ -16,7 +16,9 @@ import com.example.movieapp.adapter.GenreAdapter
 import com.example.movieapp.databinding.MovieFragmentBinding
 import com.example.movieapp.model.Genre
 import com.example.movieapp.model.Movie
+import com.example.movieapp.utils.checkInternet
 import com.example.movieapp.utils.replaceView
+import com.example.movieapp.utils.showMessage
 import com.example.movieapp.view_model.MovieViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -47,9 +49,19 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
 
     private fun onClickItem(movie: Movie?, id: Int?) {
         if (movie != null){
-            MovieDetailFragment.newInstance(movie.id).show(parentFragmentManager, "dialog_movie_detail")
+            if(requireActivity().checkInternet()) {
+                MovieDetailFragment.newInstance(movie.id)
+                    .show(parentFragmentManager, "dialog_movie_detail")
+            } else {
+                requireActivity().showMessage(requireView(), "Sem conexão com a internet")
+            }
         } else if(id != null){
-            (requireActivity() as HomeActivity).replaceView(SearchFragment.newInstance(id, sortBy), R.id.nav_host_fragment_home_container)
+            if(requireActivity().checkInternet()) {
+                (requireActivity() as HomeActivity)
+                    .replaceView(SearchFragment.newInstance(id, sortBy), R.id.nav_host_fragment_home_container)
+            } else {
+                requireActivity().showMessage(requireView(), "Sem conexão com a internet")
+            }
         }
     }
 
@@ -100,13 +112,21 @@ class MovieFragment : Fragment(R.layout.movie_fragment) {
                 dialog.cancel()
             }
             .setPositiveButton("Ok") { dialog, which ->
-                viewModel.getListOfGenres(sortBy)
-                checkedItem = selectedItem
-                when (context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
-                    Configuration.UI_MODE_NIGHT_YES -> {binding.animationLoadingDarkMode.visibility = View.VISIBLE}
-                    Configuration.UI_MODE_NIGHT_NO -> {binding.animationLoading.visibility = View.VISIBLE}
+                if(requireActivity().checkInternet()) {
+                    viewModel.getListOfGenres(sortBy)
+                    checkedItem = selectedItem
+                    when (context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+                        Configuration.UI_MODE_NIGHT_YES -> {
+                            binding.animationLoadingDarkMode.visibility = View.VISIBLE
+                        }
+                        Configuration.UI_MODE_NIGHT_NO -> {
+                            binding.animationLoading.visibility = View.VISIBLE
+                        }
+                    }
+                    binding.moviesRecyclerView.visibility = View.INVISIBLE
+                } else {
+                    requireActivity().showMessage(requireView(), "Sem conexão com a internet")
                 }
-                binding.moviesRecyclerView.visibility = View.INVISIBLE
                 dialog.dismiss()
             }
             .setSingleChoiceItems(singleItems, checkedItem) { dialog, which ->
