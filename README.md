@@ -46,12 +46,12 @@ git clone https://github.com/viniciusjasinski/MovieApp.git
 
 
 Após uma pequena animação você é direcionado a tela de login, onde é solicitado e-mail e senha :
+<img width=300 align=center alt="tela de login" src="https://user-images.githubusercontent.com/49874215/135005373-52e4c5d0-c1fc-4a56-8314-260463782a4f.png">
 
-<img width=300 align=center alt="teladelogin" src="https://user-images.githubusercontent.com/49874215/134971387-7e21d993-897c-4bbe-8790-6c6adf52e600.png">
 
 Caso você ainda não tenha cadastro favor se direcionar a tela de cadastro :
 
-<img  width=300 align=center alt="teladecadastro" src="https://user-images.githubusercontent.com/49874215/134970646-d92d2fe1-b3a7-4348-ae0b-d338883d239d.png">
+<img width=300 align=center alt="teladecadastro" src="https://user-images.githubusercontent.com/49874215/134970646-d92d2fe1-b3a7-4348-ae0b-d338883d239d.png">
 
 Após preencher email e confirmar a senha você é direcionado a tela principal,
 nesta tela tem um menu no canto superior esquerdo e um menu na parte inferior :
