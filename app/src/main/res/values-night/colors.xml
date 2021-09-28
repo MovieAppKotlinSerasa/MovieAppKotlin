@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFF</color>
+    <color name="honey_yellow">#FFB703</color>
+    <color name="orange">#FB8500</color>
+    <color name="light_cornflower_blue">#8ECAE6</color>
+    <color name="blue_green">#219EBC</color>
+    <color name="prussian_blue">#023047</color>
+    <color name="dark_gray">#212121</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="red">#CF000F</color>
+
+    <color name="accentItemBottomNav">#FFB703</color>
+    <color name="disableItemBottomNav">#D3D3D3</color>
+
+    <color name="accentTitleColor">#8ECAE6</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color">#D3D3D3</color>
+
+</resources>

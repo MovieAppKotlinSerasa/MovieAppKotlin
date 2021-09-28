@@ -3,8 +3,65 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/login_fragment.xml" value="0.228125" />
-        <entry key="app/src/main/res/layout/main_activity.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable-v24/ic_lupa_foreground.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable-v24/ic_themoviedbnobg_foreground.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/bottom_nav_selector.xml" value="0.1259259259259259" />
+        <entry key="app/src/main/res/drawable/checkbox.xml" value="0.31574074074074077" />
+        <entry key="app/src/main/res/drawable/dialog_shape_bg.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/drawable_selector.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_baseline_double_arrow_24.xml" value="0.321025641025641" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_baseline_filter_alt_24.xml" value="0.2552083333333333" />
+        <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/ic_baseline_notifications_active_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_remove_circle_24.xml" value="0.31574074074074077" />
+        <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/ic_menu_gallery.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1328125" />
+        <entry key="app/src/main/res/drawable/ic_movie_background.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/drawable/ic_movie_foreground.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/drawable/ic_themoviedbnobg_background.xml" value="0.30666666666666664" />
+        <entry key="app/src/main/res/drawable/profile.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.1328125" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/activity_offline.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.28125" />
+        <entry key="app/src/main/res/layout/app_bar_main2.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/chipzinho.xml" value="0.625" />
+        <entry key="app/src/main/res/layout/content_main2.xml" value="0.23385416666666667" />
+        <entry key="app/src/main/res/layout/edit_local_emails.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/edit_local_emails_fragment.xml" value="0.28125" />
+        <entry key="app/src/main/res/layout/favorites_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_chip.xml" value="0.2390625" />
+        <entry key="app/src/main/res/layout/item_favorites_offline.xml" value="0.30480072463768115" />
+        <entry key="app/src/main/res/layout/item_favoritos.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_genres.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_movie.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/login_activity.xml" value="0.12083333333333333" />
+        <entry key="app/src/main/res/layout/login_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/main_activity.xml" value="0.203125" />
+        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.203125" />
+        <entry key="app/src/main/res/layout/movie_detail_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/movie_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/nav_header_home.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/layout/offline_fragment.xml" value="0.30480072463768115" />
+        <entry key="app/src/main/res/layout/search_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/search_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/sign_up_fragment.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/bottom_home_navigation.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/menu/drawer_home_navigation.xml" value="0.23958333333333334" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
   </component>

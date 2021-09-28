@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="@string/menu_home_title">
+        <menu>
+<!--            <group android:checkableBehavior="single">-->
+            <item
+                android:id="@+id/drawer_nav_home"
+                android:icon="@drawable/ic_baseline_home_24"
+                android:title="@string/menu_home" />
+<!--            </group>-->
+        </menu>
+    </item>
+
+    <item android:title="@string/menu_preferences_title">
+        <menu>
+
+            <item
+                android:id="@+id/drawer_nav_settings"
+                android:icon="@drawable/ic_baseline_settings_24"
+                android:title="@string/configura_es" />
+
+
+            <item
+                android:id="@+id/drawer_nav_notifications"
+                android:icon="@drawable/ic_baseline_notifications_active_24"
+                android:title="@string/menu_notification" />
+
+        </menu>
+    </item>
+
+    <item android:title="@string/menu_signout_title">
+        <menu>
+
+            <item
+                android:id="@+id/drawer_nav_signout"
+                android:icon="@drawable/ic_baseline_logout_24"
+                android:title="@string/menu_signout" />
+
+        </menu>
+    </item>
+
+</menu>
